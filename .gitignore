@@ -1,0 +1,28 @@
+# Ignorar archivos de configuracion de VS Code
+.vscode/*
+
+# Este archivo no se debe ignorar
+# A menos que contenga tokens de seguridad privados
+#.npmrc
+
+# Antigravity & AI Context
+# Permitir la carpeta y las instrucciones base
+!.antigravity/
+!.antigravity/agent.md
+!.antigravity/instructions.md
+!.antigravity/context/architecture.txt
+!.antigravity/context/openapi.json
+
+# IGNORAR archivos con datos reales o sensibles
+.antigravity/context/*.xlsx
+.antigravity/context/*.csv
+.antigravity/context/*.json
+.antigravity/context/secrets.*
+
+# IGNORAR logs y archivos temporales del agente
+.antigravity/logs/
+.antigravity/cache/
+.antigravity/*.tmp
+
+# IGNORAR exports de diseño pesados de Stitch
+.antigravity/stitch/exports/
