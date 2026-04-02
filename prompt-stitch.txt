@@ -6,13 +6,14 @@ Actúa como un Senior Product Designer. Crea el diseño de alta fidelidad para u
 2. Usa el archivo .md de arquitectura de backend para INFERIR y diseñar las pantallas de los módulos marcados con (*), basándote en la lógica de carpetas (ej. metrics, reports).
 
 # LAYOUT & NAVIGATION
-- IDIOMA: Ya que la institución educativa es de México, el idioma debe ser ESPAÑOL.
 - FLOW: La primera pantalla es un Login elegante. Tras autenticarse, la página index `/` será un Dashboard modular que muestre opciones según el rol (asume rol de Administrador para el diseño inicial).
 - NAVBAR: Basado en el bosquejo de Excalidraw adjunto. Iconos de navegación centrados.
-- STATUS BAR (Abajo del Navbar): Muestra el "Nombre del usuario activo" y "Rol" en la esquina superior derecha.
+- STATUS BAR (Abajo del Navbar): Muestra el "Nombre del usuario activo" y "Rol" en la esquina superior derecha. 
 - NAVEGACIÓN: Incluye un botón de "Regresar" (Página anterior) visible y accesible (preferiblemente en la parte superior izquierda del contenido o como elemento flotante/sticky).
+- FOOTER: Estático, con enlaces institucionales.
 
 # VISUAL VIBE (BANKING-EDUCATION HYBRID)
+- IDIOMA: Ya que la institución es de México, TODO el contenido de las pantallas debe ser en ESPAÑOL.
 - ESTILO: Elegante, minimalista (estética de Banca Digital de alta gama).
 - COLORES: Fondo general en Modo Oscuro (Dark Mode). Navbar en color [ROJO/OCRE INSTITUCIONAL]. Contenido central en tonos gris frío y blanco para máxima legibilidad.
 - TIPOGRAFÍA: 'Instrument Sans' para títulos y 'Inter' para datos/tablas.
