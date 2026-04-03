@@ -37,6 +37,18 @@ from .student_controller import student_controller
 # User Router
 from .user_controller import user_controller
 
+# Exports Router
+from .exports_controller import exports_controller
+
+# Metrics Router
+from .metrics_controller import metrics_controller
+
+# Reports Router
+from .reports_controller import reports_controller
+
+# Uploads Router
+from .uploads_controller import uploads_controller
+
 __all__ = [
     "academic_cycle_controller",
     "attendance_controller",
@@ -51,4 +63,8 @@ __all__ = [
     "signature_controller",
     "student_controller",
     "user_controller",
+    "exports_controller",
+    "metrics_controller",
+    "reports_controller",
+    "uploads_controller",
 ]
