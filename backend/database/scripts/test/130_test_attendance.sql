@@ -7,12 +7,12 @@
 -- ====================================
 -- Insertar registros de asistencia de prueba
 -- Nota: El enrollment_id debe existir previamente en enrollments
--- INSERT INTO attendances (arrival_time, status, notes, enrollment_id)
+-- INSERT INTO attendances (attendance_date, arrival_time, status, notes, enrollment_id)
 -- VALUES 
---   ('2025-01-15 08:30:00', 'present', 'Asistió puntualmente', 1),
---   ('2025-01-15 08:45:00', 'late', 'Llegó 15 minutos tarde', 2),
---   ('2025-01-15 08:00:00', 'absent', 'Falta injustificada', 3),
---   ('2025-01-16 08:25:00', 'justified', 'Falta justificada - médico', 1);
+--   ('2025-01-15', '08:30:00', 'present', 'Asistió puntualmente', 1),
+--   ('2025-01-15', '08:45:00', 'late', 'Llegó 15 minutos tarde', 2),
+--   ('2025-01-15', '08:00:00', 'absent', 'Falta injustificada', 3),
+--   ('2025-01-16', '08:25:00', 'justified', 'Falta justificada - médico', 1);
 
 
 -- ====================================

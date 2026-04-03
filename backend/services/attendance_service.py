@@ -25,7 +25,7 @@ def search_by_id_service(db: Session = Depends(get_db), id: int | None = None) -
 
 def create_attendance_service(attendance: AttendanceCreate, db: Session = Depends(get_db)) -> Attendance | None:
     try:
-        new_attendance = create(db, attendance.attendance_date, attendance.arrival_time, attendance.status, 
+        new_attendance = create(db, attendance.attendance_date, attendance.arrival_time, 
                                attendance.notes, attendance.enrollment_id)
         return new_attendance
     except Exception as e:
@@ -39,7 +39,7 @@ def update_attendance_service(attendance_id: int, attendance_update: AttendanceU
         updated_attendance = update(db, id=attendance_id, 
                                    attendance_date=attendance_update.attendance_date, 
                                    arrival_time=attendance_update.arrival_time, 
-                                   status=attendance_update.status, notes=attendance_update.notes)
+                                   notes=attendance_update.notes)
         return updated_attendance
     except Exception as e:
         # Log error

@@ -15,7 +15,7 @@ class Schedule(Base):
     start_time: Mapped[time] = mapped_column(Time, nullable=False)
     end_time: Mapped[time] = mapped_column(Time, nullable=False)
     max_entry_minutes: Mapped[int] = mapped_column(SmallInteger, nullable=False)
-    minutes_to_be_present: Mapped[int] = mapped_column(SmallInteger, nullable=False, default=True)
+    minutes_to_be_late: Mapped[int] = mapped_column(SmallInteger, nullable=False, default=True)
     group_id: Mapped[str] = mapped_column(String, ForeignKey("groups.id"), nullable=False)
     
     # Relacion con el modelo de grupo para SQLAlchemy

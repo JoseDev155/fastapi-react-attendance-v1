@@ -7,19 +7,19 @@
 -- ====================================
 -- Insertar horarios de prueba
 -- Nota: group_id debe existir en groups
--- day_of_week: 0=Domingo, 1=Lunes, 2=Martes, ..., 6=Sábado
+-- day_of_week: 0=Lunes, 1=Martes, 2=Miércoles, 3=Jueves, 4=Viernes, 5=Sábado, 6=Domingo (convención Python)
 -- start_time y end_time en formato HH:MM:SS
--- INSERT INTO schedules (day_of_week, start_time, end_time, max_entry_minutes, minutes_to_be_present, group_id)
+-- INSERT INTO schedules (day_of_week, start_time, end_time, max_entry_minutes, minutes_to_be_late, group_id)
 -- VALUES 
---   (1, '08:00:00'::time, '09:30:00'::time, 5, 30, 'GRP001'),   -- Lunes 8:00-9:30
---   (3, '08:00:00'::time, '09:30:00'::time, 5, 30, 'GRP001'),   -- Miércoles 8:00-9:30
---   (1, '10:00:00'::time, '11:30:00'::time, 5, 30, 'GRP002'),   -- Lunes 10:00-11:30
---   (3, '10:00:00'::time, '11:30:00'::time, 5, 30, 'GRP002'),   -- Miércoles 10:00-11:30
---   (2, '14:00:00'::time, '15:30:00'::time, 10, 40, 'GRP003'),  -- Martes 14:00-15:30
---   (4, '14:00:00'::time, '15:30:00'::time, 10, 40, 'GRP003'),  -- Jueves 14:00-15:30
---   (2, '16:00:00'::time, '17:30:00'::time, 10, 40, 'GRP004'),  -- Martes 16:00-17:30
---   (4, '16:00:00'::time, '17:30:00'::time, 10, 40, 'GRP004'),  -- Jueves 16:00-17:30
---   (5, '08:00:00'::time, '10:00:00'::time, 5, 30, 'GRP005');   -- Viernes 8:00-10:00 (laboratorio)
+--   (0, '08:00:00'::time, '09:30:00'::time, 5, 30, 'GRP001'),   -- Lunes 8:00-9:30
+--   (2, '08:00:00'::time, '09:30:00'::time, 5, 30, 'GRP001'),   -- Miércoles 8:00-9:30
+--   (0, '10:00:00'::time, '11:30:00'::time, 5, 30, 'GRP002'),   -- Lunes 10:00-11:30
+--   (2, '10:00:00'::time, '11:30:00'::time, 5, 30, 'GRP002'),   -- Miércoles 10:00-11:30
+--   (1, '14:00:00'::time, '15:30:00'::time, 10, 40, 'GRP003'),  -- Martes 14:00-15:30
+--   (3, '14:00:00'::time, '15:30:00'::time, 10, 40, 'GRP003'),  -- Jueves 14:00-15:30
+--   (1, '16:00:00'::time, '17:30:00'::time, 10, 40, 'GRP004'),  -- Martes 16:00-17:30
+--   (3, '16:00:00'::time, '17:30:00'::time, 10, 40, 'GRP004'),  -- Jueves 16:00-17:30
+--   (4, '08:00:00'::time, '10:00:00'::time, 5, 30, 'GRP005');   -- Viernes 8:00-10:00 (laboratorio)
 
 
 -- ====================================

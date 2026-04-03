@@ -9,7 +9,7 @@ from exports import generate_attendance_template
 exports_controller = APIRouter()
 
 @exports_controller.get("/exports/template/group/{group_id}", tags=["exports"])
-async def export_group_template(group_id: int, year: int, month: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_admin_user)):
+async def export_group_template(group_id: str, year: int, month: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_admin_user)):
     enrollments = db.query(Enrollment).filter(Enrollment.group_id == group_id).all()
     students_data = []
     for enr in enrollments:

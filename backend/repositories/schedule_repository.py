@@ -15,7 +15,7 @@ def search_by_day(db: Session, day_of_week: int):
     return db.query(Schedule).filter(Schedule.day_of_week == day_of_week).first()
 
 def create(db: Session, id: str, day_of_week: int, start_time: time, end_time: time, max_entry_minutes: int,
-                minutes_to_be_present: int, group_id: str):
+                minutes_to_be_late: int, group_id: str):
     # Crear una nueva instancia del modelo Schedule con los datos proporcionados
     schedule = Schedule(
         id=id,
@@ -23,7 +23,7 @@ def create(db: Session, id: str, day_of_week: int, start_time: time, end_time: t
         start_time=start_time,
         end_time=end_time,
         max_entry_minutes=max_entry_minutes,
-        minutes_to_be_present=minutes_to_be_present,
+        minutes_to_be_late=minutes_to_be_late,
         group_id=group_id
     )
     
@@ -34,7 +34,7 @@ def create(db: Session, id: str, day_of_week: int, start_time: time, end_time: t
     
     return schedule
 
-def update(db: Session, id: str, day_of_week: int | None = None, start_time: time | None = None, end_time: time | None = None, max_entry_minutes: int | None = None, minutes_to_be_present: int | None = None, group_id: str | None = None):
+def update(db: Session, id: str, day_of_week: int | None = None, start_time: time | None = None, end_time: time | None = None, max_entry_minutes: int | None = None, minutes_to_be_late: int | None = None, group_id: str | None = None):
     # Buscar el horario por id
     schedule = search_by_id(db, id)
     
@@ -50,8 +50,8 @@ def update(db: Session, id: str, day_of_week: int | None = None, start_time: tim
         schedule.end_time = end_time
     if max_entry_minutes is not None:
         schedule.max_entry_minutes = max_entry_minutes
-    if minutes_to_be_present is not None:
-        schedule.minutes_to_be_present = minutes_to_be_present
+    if minutes_to_be_late is not None:
+        schedule.minutes_to_be_late = minutes_to_be_late
     if group_id is not None:
         schedule.group_id = group_id
     

@@ -33,7 +33,7 @@ def create_schedule_service(schedule: ScheduleCreate, db: Session = Depends(get_
     try:
         new_schedule = create(db, schedule.id, schedule.day_of_week, schedule.start_time,
                              schedule.end_time, schedule.max_entry_minutes,
-                             schedule.minutes_to_be_present, schedule.group_id)
+                             schedule.minutes_to_be_late, schedule.group_id)
         return new_schedule
     except Exception as e:
         # Log error
@@ -46,7 +46,7 @@ def update_schedule_service(schedule_id: str, schedule_update: ScheduleUpdate,
         updated_schedule = update(db, id=schedule_id, day_of_week=schedule_update.day_of_week,
                                  start_time=schedule_update.start_time, end_time=schedule_update.end_time,
                                  max_entry_minutes=schedule_update.max_entry_minutes,
-                                 minutes_to_be_present=schedule_update.minutes_to_be_present,
+                                 minutes_to_be_late=schedule_update.minutes_to_be_late,
                                  group_id=schedule_update.group_id)
         return updated_schedule
     except Exception as e:

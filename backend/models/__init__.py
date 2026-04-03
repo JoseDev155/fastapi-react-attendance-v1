@@ -1,5 +1,5 @@
 from .academic_cycle import AcademicCycle
-from .attendance import Attendance, AttendanceStatus
+from .attendance import Attendance
 from .career import Career
 from .career_signature import CareerSignature
 from .enrollment import Enrollment
@@ -13,7 +13,6 @@ from .user import User
 __all__ = [
     "AcademicCycle",
     "Attendance",
-    "AttendanceStatus",
     "Career",
     "CareerSignature",
     "Enrollment",
