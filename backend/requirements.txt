@@ -1,0 +1,9 @@
+psycopg[binary]
+python-dotenv
+fastapi
+uvicorn
+SQLAlchemy
+pwdlib[bcrypt]
+pydantic[email]
+PyJWT
+slowapi
