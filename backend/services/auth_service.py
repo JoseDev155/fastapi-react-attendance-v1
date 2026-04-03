@@ -3,6 +3,7 @@ from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 import jwt
 # Importar directorios del proyecto
+from utils.logger import logger
 from models import User
 from repositories import user_repository
 from utils import (
@@ -65,7 +66,7 @@ def login_auth_service(db: Session, login_data: LoginRequest) -> TokenResponse |
     except HTTPException:
         raise
     except Exception as e:
-        print(f"Error en login: {e}")
+        logger.error("Error en login: %s", e, exc_info=True)
         return None
 
 
@@ -113,7 +114,7 @@ def register_auth_service(db: Session, register_data: RegisterRequest) -> UserRe
     except HTTPException:
         raise
     except Exception as e:
-        print(f"Error en registro: {e}")
+        logger.error("Error en registro: %s", e, exc_info=True)
         return None
 
 
@@ -163,7 +164,7 @@ def refresh_token_auth_service(refresh_token_str: str) -> TokenResponse | None:
     except HTTPException:
         raise
     except Exception as e:
-        print(f"Error en refresh token: {e}")
+        logger.error("Error en refresh token: %s", e, exc_info=True)
         return None
 
 
@@ -203,7 +204,7 @@ def change_password_auth_service(db: Session, user: User, change_pwd_data: Chang
     except HTTPException:
         raise
     except Exception as e:
-        print(f"Error al cambiar contraseña: {e}")
+        logger.error("Error al cambiar contraseña: %s", e, exc_info=True)
         return None
 
 
@@ -212,5 +213,5 @@ def get_current_user_info_service(user: User) -> UserResponse | None:
     try:
         return UserResponse.model_validate(user)
     except Exception as e:
-        print(f"Error al obtener información del usuario: {e}")
+        logger.error("Error al obtener información del usuario: %s", e, exc_info=True)
         return None

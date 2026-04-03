@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     group_create as create, \
     group_get_all as get_all, \
@@ -35,7 +36,7 @@ def create_group_service(group: GroupCreate, db: Session = Depends(get_db)) -> G
         return new_group
     except Exception as e:
         # Log error
-        print(f"Error creando grupo: {e}")
+        logger.error("Error creando grupo: %s", e, exc_info=True)
         return None
 
 def update_group_service(group_id: str, group_update: GroupUpdate,
@@ -47,7 +48,7 @@ def update_group_service(group_id: str, group_update: GroupUpdate,
         return updated_group
     except Exception as e:
         # Log error
-        print(f"Error actualizando grupo: {e}")
+        logger.error("Error actualizando grupo: %s", e, exc_info=True)
         return None
 
 def destroy_group_service(group_id: str, db: Session = Depends(get_db)) -> bool:
@@ -56,5 +57,5 @@ def destroy_group_service(group_id: str, db: Session = Depends(get_db)) -> bool:
         return True if group else False
     except Exception as e:
         # Log error
-        print(f"Error eliminando grupo: {e}")
+        logger.error("Error eliminando grupo: %s", e, exc_info=True)
         return False

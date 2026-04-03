@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     student_create as create, \
     student_get_all as get_all, \
@@ -41,7 +42,7 @@ def create_student_service(student: StudentCreate, db: Session = Depends(get_db)
         return new_student
     except Exception as e:
         # Log error
-        print(f"Error creando estudiante: {e}")
+        logger.error("Error creando estudiante: %s", e, exc_info=True)
         return None
 
 def update_student_service(student_id: str, student_update: StudentUpdate,
@@ -53,7 +54,7 @@ def update_student_service(student_id: str, student_update: StudentUpdate,
         return updated_student
     except Exception as e:
         # Log error
-        print(f"Error actualizando estudiante: {e}")
+        logger.error("Error actualizando estudiante: %s", e, exc_info=True)
         return None
 
 def destroy_student_service(student_id: str, db: Session = Depends(get_db)) -> bool:
@@ -62,5 +63,5 @@ def destroy_student_service(student_id: str, db: Session = Depends(get_db)) -> b
         return True if student else False
     except Exception as e:
         # Log error
-        print(f"Error eliminando estudiante: {e}")
+        logger.error("Error eliminando estudiante: %s", e, exc_info=True)
         return False

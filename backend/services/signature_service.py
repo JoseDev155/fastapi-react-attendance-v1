@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     signature_create as create, \
     signature_get_all as get_all, \
@@ -34,7 +35,7 @@ def create_signature_service(signature: SignatureCreate, db: Session = Depends(g
         return new_signature
     except Exception as e:
         # Log error
-        print(f"Error creando asignatura: {e}")
+        logger.error("Error creando asignatura: %s", e, exc_info=True)
         return None
 
 def update_signature_service(signature_id: str, signature_update: SignatureUpdate,
@@ -45,7 +46,7 @@ def update_signature_service(signature_id: str, signature_update: SignatureUpdat
         return updated_signature
     except Exception as e:
         # Log error
-        print(f"Error actualizando asignatura: {e}")
+        logger.error("Error actualizando asignatura: %s", e, exc_info=True)
         return None
 
 def destroy_signature_service(signature_id: str, db: Session = Depends(get_db)) -> bool:
@@ -54,5 +55,5 @@ def destroy_signature_service(signature_id: str, db: Session = Depends(get_db)) 
         return True if signature else False
     except Exception as e:
         # Log error
-        print(f"Error eliminando asignatura: {e}")
+        logger.error("Error eliminando asignatura: %s", e, exc_info=True)
         return False

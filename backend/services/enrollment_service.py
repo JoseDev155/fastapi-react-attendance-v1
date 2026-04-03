@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from datetime import date
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     enrollment_create as create, \
     enrollment_get_all as get_all, \
@@ -35,7 +36,7 @@ def create_enrollment_service(enrollment: EnrollmentCreate, db: Session = Depend
         return new_enrollment
     except Exception as e:
         # Log error
-        print(f"Error creando inscripción: {e}")
+        logger.error("Error creando inscripción: %s", e, exc_info=True)
         return None
 
 def update_enrollment_service(enrollment_id: int, enrollment_update: EnrollmentUpdate,
@@ -46,7 +47,7 @@ def update_enrollment_service(enrollment_id: int, enrollment_update: EnrollmentU
         return updated_enrollment
     except Exception as e:
         # Log error
-        print(f"Error actualizando inscripción: {e}")
+        logger.error("Error actualizando inscripción: %s", e, exc_info=True)
         return None
 
 def destroy_enrollment_service(enrollment_id: int, db: Session = Depends(get_db)) -> bool:
@@ -55,5 +56,5 @@ def destroy_enrollment_service(enrollment_id: int, db: Session = Depends(get_db)
         return True if enrollment else False
     except Exception as e:
         # Log error
-        print(f"Error eliminando inscripción: {e}")
+        logger.error("Error eliminando inscripción: %s", e, exc_info=True)
         return False

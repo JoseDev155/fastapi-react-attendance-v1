@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     user_create as create, \
     user_get_all as get_all, \
@@ -45,7 +46,7 @@ def create_user_service(user: UserCreate, db: Session = Depends(get_db)) -> User
         return new_user
     except Exception as e:
         # Log error
-        print(f"Error creating user: {e}")
+        logger.error("Error creating user: %s", e, exc_info=True)
         return None
 
 def update_user_service(user_id: str, user_update: UserUpdate,
@@ -56,7 +57,7 @@ def update_user_service(user_id: str, user_update: UserUpdate,
         return updated_user
     except Exception as e:
         # Log error
-        print(f"Error updating user: {e}")
+        logger.error("Error updating user: %s", e, exc_info=True)
         return None
 
 def delete_user_service(user_id: str, db: Session = Depends(get_db)) -> bool:
@@ -65,7 +66,7 @@ def delete_user_service(user_id: str, db: Session = Depends(get_db)) -> bool:
         return user
     except Exception as e:
         # Log error
-        print(f"Error desactivando user: {e}")
+        logger.error("Error desactivando user: %s", e, exc_info=True)
         return False
 
 def reactivate_user_service(user_id: str, db: Session = Depends(get_db)) -> User | None:
@@ -74,7 +75,7 @@ def reactivate_user_service(user_id: str, db: Session = Depends(get_db)) -> User
         return user
     except Exception as e:
         # Log error
-        print(f"Error reactivating user: {e}")
+        logger.error("Error reactivating user: %s", e, exc_info=True)
         return None
 
 def destroy_user_service(user_id: str, db: Session = Depends(get_db)) -> User | None:
@@ -83,5 +84,5 @@ def destroy_user_service(user_id: str, db: Session = Depends(get_db)) -> User | 
         return user
     except Exception as e:
         # Log error
-        print(f"Error destroying user: {e}")
+        logger.error("Error destroying user: %s", e, exc_info=True)
         return None

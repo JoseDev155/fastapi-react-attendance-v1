@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     career_signature_create as create, \
     career_signature_get_all as get_all, \
@@ -28,7 +29,7 @@ def create_career_signature_service(career_sig: CareerSignatureCreate, db: Sessi
         return new_career_sig
     except Exception as e:
         # Log error
-        print(f"Error creando carrera-asignatura: {e}")
+        logger.error("Error creando carrera-asignatura: %s", e, exc_info=True)
         return None
 
 def update_career_signature_service(career_sig_id: str, career_sig_update: CareerSignatureUpdate,
@@ -39,7 +40,7 @@ def update_career_signature_service(career_sig_id: str, career_sig_update: Caree
         return updated_career_sig
     except Exception as e:
         # Log error
-        print(f"Error actualizando carrera-asignatura: {e}")
+        logger.error("Error actualizando carrera-asignatura: %s", e, exc_info=True)
         return None
 
 def destroy_career_signature_service(career_sig_id: str, db: Session = Depends(get_db)) -> bool:
@@ -48,5 +49,5 @@ def destroy_career_signature_service(career_sig_id: str, db: Session = Depends(g
         return True if career_sig else False
     except Exception as e:
         # Log error
-        print(f"Error eliminando carrera-asignatura: {e}")
+        logger.error("Error eliminando carrera-asignatura: %s", e, exc_info=True)
         return False

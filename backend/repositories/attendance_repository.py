@@ -14,6 +14,12 @@ def search_by_id(db: Session, id: int):
 def search_by_arrival(db: Session, arrival_time: time):
     return db.query(Attendance).filter(Attendance.arrival_time == arrival_time).first()
 
+def search_by_enrollment_and_date(db: Session, enrollment_id: int, attendance_date: date):
+    return db.query(Attendance).filter(
+        Attendance.enrollment_id == enrollment_id,
+        Attendance.attendance_date == attendance_date
+    ).first()
+
 def search_by_id_status(db: Session, status: str):
     if not status:
         return None

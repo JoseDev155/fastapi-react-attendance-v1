@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     attendance_create as create, \
     attendance_get_all as get_all, \
@@ -29,7 +30,7 @@ def create_attendance_service(attendance: AttendanceCreate, db: Session = Depend
         return new_attendance
     except Exception as e:
         # Log error
-        print(f"Error creando asistencia: {e}")
+        logger.error("Error creando asistencia: %s", e, exc_info=True)
         return None
 
 def update_attendance_service(attendance_id: int, attendance_update: AttendanceUpdate,
@@ -42,7 +43,7 @@ def update_attendance_service(attendance_id: int, attendance_update: AttendanceU
         return updated_attendance
     except Exception as e:
         # Log error
-        print(f"Error actualizando asistencia: {e}")
+        logger.error("Error actualizando asistencia: %s", e, exc_info=True)
         return None
 
 def destroy_attendance_service(attendance_id: int, db: Session = Depends(get_db)) -> bool:
@@ -51,5 +52,5 @@ def destroy_attendance_service(attendance_id: int, db: Session = Depends(get_db)
         return True if attendance else False
     except Exception as e:
         # Log error
-        print(f"Error eliminando asistencia: {e}")
+        logger.error("Error eliminando asistencia: %s", e, exc_info=True)
         return False

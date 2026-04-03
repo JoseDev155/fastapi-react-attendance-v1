@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     career_create as create, \
     career_get_all as get_all, \
@@ -39,7 +40,7 @@ def create_career_service(career: CareerCreate, db: Session = Depends(get_db)) -
         return new_career
     except Exception as e:
         # Log error
-        print(f"Error creando carrera: {e}")
+        logger.error("Error creando carrera: %s", e, exc_info=True)
         return None
 
 def update_career_service(career_id: int, career_update: CareerUpdate,
@@ -49,7 +50,7 @@ def update_career_service(career_id: int, career_update: CareerUpdate,
         return updated_career
     except Exception as e:
         # Log error
-        print(f"Error actualizando carrera: {e}")
+        logger.error("Error actualizando carrera: %s", e, exc_info=True)
         return None
 
 def delete_career_service(career_id: int, db: Session = Depends(get_db)) -> Career | None:
@@ -58,7 +59,7 @@ def delete_career_service(career_id: int, db: Session = Depends(get_db)) -> Care
         return career
     except Exception as e:
         # Log error
-        print(f"Error desactivando carrera: {e}")
+        logger.error("Error desactivando carrera: %s", e, exc_info=True)
         return None
 
 def reactivate_career_service(career_id: int, db: Session = Depends(get_db)) -> Career | None:
@@ -67,7 +68,7 @@ def reactivate_career_service(career_id: int, db: Session = Depends(get_db)) -> 
         return career
     except Exception as e:
         # Log error
-        print(f"Error reactivando carrera: {e}")
+        logger.error("Error reactivando carrera: %s", e, exc_info=True)
         return None
 
 def destroy_career_service(career_id: int, db: Session = Depends(get_db)) -> bool:
@@ -76,5 +77,5 @@ def destroy_career_service(career_id: int, db: Session = Depends(get_db)) -> boo
         return True if career else False
     except Exception as e:
         # Log error
-        print(f"Error eliminando carrera: {e}")
+        logger.error("Error eliminando carrera: %s", e, exc_info=True)
         return False

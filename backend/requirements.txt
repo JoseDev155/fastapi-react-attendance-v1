@@ -6,4 +6,7 @@ SQLAlchemy
 pwdlib[bcrypt]
 pydantic[email]
 PyJWT
+python-multipart
 slowapi
+pandas
+openpyxl

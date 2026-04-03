@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     role_create as create, \
     role_get_all as get_all, \
@@ -39,7 +40,7 @@ def create_role_service(role: RoleCreate, db: Session = Depends(get_db)) -> Role
         return new_role
     except Exception as e:
         # Log error
-        print(f"Error creating role: {e}")
+        logger.error("Error creating role: %s", e, exc_info=True)
         return None
 
 def update_role_service(role_id: int, role_update: RoleUpdate,
@@ -49,7 +50,7 @@ def update_role_service(role_id: int, role_update: RoleUpdate,
         return updated_role
     except Exception as e:
         # Log error
-        print(f"Error updating role: {e}")
+        logger.error("Error updating role: %s", e, exc_info=True)
         return None
 
 def delete_role_service(role_id: int, db: Session = Depends(get_db)) -> Role | None:
@@ -58,7 +59,7 @@ def delete_role_service(role_id: int, db: Session = Depends(get_db)) -> Role | N
         return role
     except Exception as e:
         # Log error
-        print(f"Error desactivando rol: {e}")
+        logger.error("Error desactivando rol: %s", e, exc_info=True)
         return None
 
 def reactivate_role_service(role_id: int, db: Session = Depends(get_db)) -> Role | None:
@@ -67,7 +68,7 @@ def reactivate_role_service(role_id: int, db: Session = Depends(get_db)) -> Role
         return role
     except Exception as e:
         # Log error
-        print(f"Error reactivating role: {e}")
+        logger.error("Error reactivating role: %s", e, exc_info=True)
         return None
 
 def destroy_role_service(role_id: int, db: Session = Depends(get_db)) -> Role | None:
@@ -76,5 +77,5 @@ def destroy_role_service(role_id: int, db: Session = Depends(get_db)) -> Role | 
         return role
     except Exception as e:
         # Log error
-        print(f"Error eliminando rol: {e}")
+        logger.error("Error eliminando rol: %s", e, exc_info=True)
         return None

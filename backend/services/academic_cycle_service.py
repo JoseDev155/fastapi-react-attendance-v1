@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     academic_cycle_create as create, \
     academic_cycle_get_all as get_all, \
@@ -34,7 +35,7 @@ def create_academic_cycle_service(cycle: AcademicCycleCreate, db: Session = Depe
         return new_cycle
     except Exception as e:
         # Log error
-        print(f"Error creando ciclo académico: {e}")
+        logger.error("Error creando ciclo académico: %s", e, exc_info=True)
         return None
 
 def update_academic_cycle_service(cycle_id: int, cycle_update: AcademicCycleUpdate,
@@ -44,7 +45,7 @@ def update_academic_cycle_service(cycle_id: int, cycle_update: AcademicCycleUpda
         return updated_cycle
     except Exception as e:
         # Log error
-        print(f"Error actualizando ciclo académico: {e}")
+        logger.error("Error actualizando ciclo académico: %s", e, exc_info=True)
         return None
 
 def destroy_academic_cycle_service(cycle_id: int, db: Session = Depends(get_db)) -> bool:
@@ -53,5 +54,5 @@ def destroy_academic_cycle_service(cycle_id: int, db: Session = Depends(get_db))
         return True if cycle else False
     except Exception as e:
         # Log error
-        print(f"Error eliminando ciclo académico: {e}")
+        logger.error("Error eliminando ciclo académico: %s", e, exc_info=True)
         return False

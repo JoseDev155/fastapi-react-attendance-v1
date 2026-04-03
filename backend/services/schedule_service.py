@@ -3,6 +3,7 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from typing import List
 # Importar directorios del proyecto
+from utils.logger import logger
 from repositories import (
     schedule_create as create, \
     schedule_get_all as get_all, \
@@ -36,7 +37,7 @@ def create_schedule_service(schedule: ScheduleCreate, db: Session = Depends(get_
         return new_schedule
     except Exception as e:
         # Log error
-        print(f"Error creando horario: {e}")
+        logger.error("Error creando horario: %s", e, exc_info=True)
         return None
 
 def update_schedule_service(schedule_id: str, schedule_update: ScheduleUpdate,
@@ -50,7 +51,7 @@ def update_schedule_service(schedule_id: str, schedule_update: ScheduleUpdate,
         return updated_schedule
     except Exception as e:
         # Log error
-        print(f"Error actualizando horario: {e}")
+        logger.error("Error actualizando horario: %s", e, exc_info=True)
         return None
 
 def destroy_schedule_service(schedule_id: str, db: Session = Depends(get_db)) -> bool:
@@ -59,5 +60,5 @@ def destroy_schedule_service(schedule_id: str, db: Session = Depends(get_db)) ->
         return True if schedule else False
     except Exception as e:
         # Log error
-        print(f"Error eliminando horario: {e}")
+        logger.error("Error eliminando horario: %s", e, exc_info=True)
         return False
