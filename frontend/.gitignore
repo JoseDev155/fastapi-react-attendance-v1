@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Variables de entorno — NO versionar
+.env
+.env.local
+.env.*.local
+# base.env sí se versiona (es la plantilla con valores vacíos)
