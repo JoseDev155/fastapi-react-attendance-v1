@@ -52,8 +52,14 @@ def login_auth_service(db: Session, login_data: LoginRequest) -> TokenResponse |
                 detail="Usuario inactivo"
             )
         
-        # Crear tokens
-        access_token = create_access_token(data={"sub": user.id})
+        # Crear tokens con datos del usuario embebidos en el payload
+        token_data = {
+            "sub":        user.id,
+            "first_name": user.first_name,
+            "last_name":  user.last_name,
+            "role_id":    user.role_id,
+        }
+        access_token  = create_access_token(data=token_data)
         refresh_token = create_refresh_token(data={"sub": user.id})
         
         return TokenResponse(

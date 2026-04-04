@@ -25,7 +25,13 @@ from .academic_cycle_schema import (
 )
 
 # Schemas para Attendance
-from .attendance_schema import AttendanceBase, AttendanceCreate, AttendanceUpdate, AttendanceResponse
+from .attendance_schema import (
+    AttendanceBase,
+    AttendanceCreate,
+    AttendanceUpdate,
+    AttendanceResponse,
+    CalculatedAttendanceResponse,
+)
 
 # Schemas para Career
 from .career_schema import CareerBase, CareerCreate, CareerUpdate, CareerResponse
@@ -92,6 +98,7 @@ __all__ = [
     "AttendanceCreate",
     "AttendanceUpdate",
     "AttendanceResponse",
+    "CalculatedAttendanceResponse",
     # Career
     "CareerBase",
     "CareerCreate",

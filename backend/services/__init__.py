@@ -11,6 +11,7 @@ from .academic_cycle_service import (
 # Attendance Service
 from .attendance_service import (
     get_all_service as get_all_attendances,
+    get_calculated_attendances_by_group_service as get_calculated_attendances_by_group,
     search_by_id_service as search_attendance_by_id,
     create_attendance_service,
     update_attendance_service,
@@ -133,6 +134,7 @@ __all__ = [
     "destroy_academic_cycle_service",
     # Attendance
     "get_all_attendances",
+    "get_calculated_attendances_by_group",
     "search_attendance_by_id",
     "create_attendance_service",
     "update_attendance_service",

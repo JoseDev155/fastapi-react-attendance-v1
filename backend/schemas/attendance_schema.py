@@ -25,3 +25,7 @@ class AttendanceUpdate(BaseModel):
 class AttendanceResponse(AttendanceBase):
     id: int
     enrollment_id: int
+
+# 5. RESPONSE CALCULADO: Inyecta el status computado
+class CalculatedAttendanceResponse(AttendanceResponse):
+    status: str
