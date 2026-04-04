@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "background": "#121314",
+              "on-error-container": "#ffdad6",
+              "primary": "#ffb4ac",
+              "surface-container-lowest": "#0d0e0f",
+              "surface-container-low": "#1b1c1d",
+              "on-tertiary-container": "#cbcdd0",
+              "on-primary-fixed": "#410003",
+              "surface-container-high": "#292a2b",
+              "on-error": "#690005",
+              "error": "#ffb4ab",
+              "tertiary-container": "#54575a",
+              "tertiary-fixed": "#e1e3e6",
+              "on-secondary-fixed-variant": "#45474a",
+              "outline": "#a78a87",
+              "secondary-fixed": "#e2e2e6",
+              "surface-container-highest": "#343536",
+              "secondary-container": "#45474a",
+              "on-secondary": "#2e3133",
+              "on-tertiary-fixed": "#191c1e",
+              "outline-variant": "#58413f",
+              "on-secondary-container": "#b4b5b8",
+              "inverse-surface": "#e3e2e3",
+              "inverse-primary": "#b32827",
+              "on-primary": "#690007",
+              "secondary": "#c5c6ca",
+              "surface-tint": "#ffb4ac",
+              "primary-container": "#a82020",
+              "surface-dim": "#121314",
+              "on-primary-fixed-variant": "#900b12",
+              "on-background": "#e3e2e3",
+              "surface": "#121314",
+              "on-tertiary-fixed-variant": "#44474a",
+              "on-primary-container": "#ffbdb6",
+              "surface-container": "#1f2021",
+              "tertiary": "#c4c7ca",
+              "tertiary-fixed-dim": "#c4c7ca",
+              "surface-bright": "#38393a",
+              "secondary-fixed-dim": "#c5c6ca",
+              "on-surface-variant": "#dfbfbc",
+              "on-surface": "#e3e2e3",
+              "surface-variant": "#343536",
+              "primary-fixed-dim": "#ffb4ac",
+              "primary-fixed": "#ffdad6",
+              "on-tertiary": "#2e3133",
+              "error-container": "#93000a",
+              "on-secondary-fixed": "#191c1e",
+              "inverse-on-surface": "#303031"
+            },
+            fontFamily: {
+              "headline": ["Instrument Sans", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Instrument Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col pt-20 bg-[#121314] dark:bg-[#121314] w-64 shadow-[40px_0_60px_-5px_rgba(13,14,15,0.6)] z-20">
+<div class="px-6 mb-8">
+<h2 class="text-lg font-black text-[#ffb4ac] tracking-tight">The Sovereign Ledger</h2>
+<p class="text-xs font-label text-on-surface-variant opacity-70 uppercase tracking-widest">Institutional Vault</p>
+</div>
+<nav class="flex-grow">
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-3 hover:text-[#e3e2e3] hover:bg-[#1b1c1d] transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="history_edu">history_edu</span>
+<span class="text-sm font-label">Academic Cycles</span>
+</a>
+<!-- Active State: Student Records -->
+<a class="flex items-center bg-gradient-to-r from-[#ffb4ac]/10 to-transparent text-[#ffb4ac] border-l-2 border-[#ffb4ac] px-4 py-3 transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="text-sm font-label font-semibold">Student Records</span>
+</a>
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-3 hover:text-[#e3e2e3] hover:bg-[#1b1c1d] transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="analytics">analytics</span>
+<span class="text-sm font-label">Report Engine</span>
+</a>
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-3 hover:text-[#e3e2e3] hover:bg-[#1b1c1d] transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="text-sm font-label">Security Settings</span>
+</a>
+</nav>
+<div class="p-6 mt-auto border-t border-[#1b1c1d]">
+<button class="w-full py-3 bg-gradient-to-br from-[#ffb4ac] to-[#a82020] text-on-primary font-bold rounded-md text-sm shadow-lg">
+                Generate Statement
+            </button>
+</div>
+<div class="pb-8">
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-2 hover:text-[#e3e2e3] text-xs" href="#">
+<span class="material-symbols-outlined mr-3 scale-75" data-icon="terminal">terminal</span>
+                System Logs
+            </a>
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-2 hover:text-[#e3e2e3] text-xs" href="#">
+<span class="material-symbols-outlined mr-3 scale-75" data-icon="help_center">help_center</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow ml-64 min-h-screen flex flex-col overflow-y-auto">
+<!-- Top Bar -->
+<header class="flex justify-between items-center w-full px-12 h-16 bg-[#121314] dark:bg-[#121314] z-10 sticky top-0">
+<div class="flex items-center space-x-6">
+<button class="text-[#e3e2e3]/60 hover:text-[#ffb4ac] flex items-center transition-all group">
+<span class="material-symbols-outlined mr-2" data-icon="arrow_back">arrow_back</span>
+<span class="text-sm font-label uppercase tracking-widest">Regresar</span>
+</button>
+<div class="bg-[#1b1c1d] h-px w-8"></div>
+<h1 class="text-xl font-headline font-bold tracking-tight text-on-surface">Expedientes de Estudiantes</h1>
+</div>
+<div class="flex items-center space-x-8">
+<!-- User Profile Context -->
+<div class="flex items-center space-x-3 text-right">
+<div>
+<p class="text-sm font-semibold text-on-surface">Dr. Alberto Pérez</p>
+<p class="text-[10px] text-primary uppercase tracking-[0.2em] font-label">Administrador</p>
+</div>
+<div class="w-10 h-10 rounded-full border border-[#1b1c1d] p-0.5 overflow-hidden">
+<img alt="Administrator Profile" class="w-full h-full object-cover rounded-full" data-alt="close up headshot of a middle aged male professor with glasses and a kind expression in a dark office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCttsJ_36zVITbYoBm46EkzQ4pgOV_MCGxL0exidwqEds1UMmeXPMSYzhpKOUiCgcr4aVP44VVT2DjJgOtCXwFwtucWeayUzzQt0pNt2_deNkLMKgIYYpAilnyIM6aw5fJK-pOcF9lwM-u_Rzp0VN-n9kyhk0AXul5mOqK8eEv2AxTZPl1hz9sqCAtSHh3MVEGHWlFTunCTSzgY7aJAsGwkBU8m_n01yroisW_lKph9k_iBhDT4HMPP72Cj8i0CwUfx5On5J9tTplA"/>
+</div>
+</div>
+<div class="flex space-x-4">
+<span class="material-symbols-outlined text-[#ffb4ac] cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-[#ffb4ac] cursor-pointer" data-icon="account_balance">account_balance</span>
+</div>
+</div>
+</header>
+<div class="px-12 py-10 space-y-10">
+<!-- Actions & Filters -->
+<section class="grid grid-cols-12 gap-6 items-end">
+<div class="col-span-12 lg:col-span-5 relative">
+<label class="block text-[10px] font-label text-on-surface-variant uppercase tracking-widest mb-2 px-1">Búsqueda Global</label>
+<div class="relative group">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary scale-y-0 group-focus-within:scale-y-100 transition-transform origin-center"></div>
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant opacity-40" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border-none py-4 pl-12 pr-4 text-on-surface placeholder:text-[#343536] focus:ring-0 rounded-sm" placeholder="Buscar por nombre, ID o correo..." type="text"/>
+</div>
+</div>
+<div class="col-span-6 lg:col-span-3">
+<label class="block text-[10px] font-label text-on-surface-variant uppercase tracking-widest mb-2 px-1">Filtrar por Carrera</label>
+<select class="w-full bg-surface-container-lowest border-none py-4 px-4 text-on-surface focus:ring-0 rounded-sm appearance-none">
+<option>Todas las Carreras</option>
+<option>Ingeniería Civil</option>
+<option>Medicina Comunitaria</option>
+<option>Derecho y Justicia</option>
+<option>Estudios Históricos</option>
+</select>
+</div>
+<div class="col-span-6 lg:col-span-2">
+<label class="block text-[10px] font-label text-on-surface-variant uppercase tracking-widest mb-2 px-1">Estatus</label>
+<select class="w-full bg-surface-container-lowest border-none py-4 px-4 text-on-surface focus:ring-0 rounded-sm appearance-none">
+<option>Cualquier Estatus</option>
+<option>Activo</option>
+<option>Inactivo</option>
+<option>Baja Temporal</option>
+</select>
+</div>
+<div class="col-span-12 lg:col-span-2">
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-sm flex items-center justify-center space-x-2 shadow-lg hover:shadow-primary-container/20 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>Nuevo Estudiante</span>
+</button>
+</div>
+</section>
+<!-- Data Table Section -->
+<section class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="text-left border-b border-[#1b1c1d]">
+<th class="py-6 px-8 text-[10px] font-label text-on-surface-variant uppercase tracking-widest font-semibold">Foto</th>
+<th class="py-6 px-4 text-[10px] font-label text-on-surface-variant uppercase tracking-widest font-semibold">Nombre del Estudiante</th>
+<th class="py-6 px-4 text-[10px] font-label text-on-surface-variant uppercase tracking-widest font-semibold">ID Matrícula</th>
+<th class="py-6 px-4 text-[10px] font-label text-on-surface-variant uppercase tracking-widest font-semibold">Carrera</th>
+<th class="py-6 px-4 text-[10px] font-label text-on-surface-variant uppercase tracking-widest font-semibold">Correo Electrónico</th>
+<th class="py-6 px-4 text-[10px] font-label text-on-surface-variant uppercase tracking-widest font-semibold">Estatus</th>
+<th class="py-6 px-8 text-right text-[10px] font-label text-on-surface-variant uppercase tracking-widest font-semibold">Acciones</th>
+</tr>
+</thead>
+<tbody class="text-sm font-body">
+<!-- Row 1 -->
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-6 px-8">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest overflow-hidden shadow-sm">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="portrait of a young student in a library with soft ambient lighting and books in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhaKtn1jNzBh0FkuTtNZxmav9fs1Iq3929Fx99MRxbYq1Q9314jwdtlqABnqEiT5LIrSK_H93v_m-tpuHgpC4llg9bn-AeoWxHmxwDNjuKJDvQjRFnW_viog2GffYv12SW1yveIXMjA4b3qcWTTEZFmbrO11CZ5_MFvOMSUkyPZbff5BxJlh6dO-v-eAz-KLVYl4DmAleXqkxi6krCpFVZM0mC_kJCZI_3LiQKm0YMwZedpjhdhB2TcT46dMfMXpway5YbuJgEfQ8"/>
+</div>
+</td>
+<td class="py-6 px-4">
+<p class="font-bold text-on-surface">Alejandro Ruiz Santos</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">Ingreso: Otoño 2023</p>
+</td>
+<td class="py-6 px-4">
+<span class="font-mono text-primary/80">UBBJ-2023-0492</span>
+</td>
+<td class="py-6 px-4 text-on-surface-variant">Medicina Comunitaria</td>
+<td class="py-6 px-4 text-on-surface-variant">a.ruiz.santos@ubbj.edu.mx</td>
+<td class="py-6 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Activo
+                                    </span>
+</td>
+<td class="py-6 px-8 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<td class="py-6 px-8">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest overflow-hidden shadow-sm">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="portrait of a young smiling woman with long dark hair against a soft urban background at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCedBc_QKV9iklEi-0HQMfT3WItzuLABi-lPChxFuImVPCQEW8jzlhb7dhjdFeZgE3M8viIDej69t0hFabqytfG1nHxl1kk26rGPJ34WLPsr_60pl_q6dft3hlijhOcFBS_sPVjfHtryucREW6hxQYc3SHsY3FsjExSbRSHQRc3a-0uuOKBeL5Hil1R_SZD-eHz5DUGNOI_PmFqAY4H0oKjYs1W_hCNSyqTLlqixRy7v36ZNhejZfdfFX72ZgJi392zquDnSrznfw4"/>
+</div>
+</td>
+<td class="py-6 px-4">
+<p class="font-bold text-on-surface">Elena Villalobos Garrido</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">Ingreso: Primavera 2022</p>
+</td>
+<td class="py-6 px-4">
+<span class="font-mono text-primary/80">UBBJ-2022-1108</span>
+</td>
+<td class="py-6 px-4 text-on-surface-variant">Derecho y Justicia</td>
+<td class="py-6 px-4 text-on-surface-variant">e.villalobos@ubbj.edu.mx</td>
+<td class="py-6 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Activo
+                                    </span>
+</td>
+<td class="py-6 px-8 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="py-6 px-8">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest overflow-hidden shadow-sm">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="close up of a confident young man in a denim jacket looking at the camera in a modern campus setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApv9i23B1DpKUYVPYAxiAW9rKL79DXVYmRk6a-KWFRCsPZ3zTFim4e32_LLFxRFW__fsHKY7jQErKJ_nnQiXns62_pjSUKXs5VJGVMIyaNNirIcLEEzk8fj4Q_fzuzDms8BYU7py3QH0_93pNxdAbX1I-Atgtnvll-f5ULrSkSj98y0naR389k4P3mabMAeaU9Nwohf4-fnbO0OhRfUBzkUbQrjbHPahG6ojkA8_afzVOXHR5k8q17XKk3k9Pg8ZLx5KT4VXgiMZY"/>
+</div>
+</td>
+<td class="py-6 px-4">
+<p class="font-bold text-on-surface">Mateo Jiménez López</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">Ingreso: Otoño 2021</p>
+</td>
+<td class="py-6 px-4">
+<span class="font-mono text-primary/80">UBBJ-2021-0883</span>
+</td>
+<td class="py-6 px-4 text-on-surface-variant">Ingeniería Civil</td>
+<td class="py-6 px-4 text-on-surface-variant">m.jimenez@ubbj.edu.mx</td>
+<td class="py-6 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#343536] text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant/40 mr-2"></span> Inactivo
+                                    </span>
+</td>
+<td class="py-6 px-8 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<td class="py-6 px-8">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest overflow-hidden shadow-sm">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="studio portrait of a young woman with intense focused gaze, neutral lighting and dark gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGAe--3T9e1EYFy6hPg1zcIxZlHtyiLSyfEVY6kb71-Ko-KqoxJ1Vt3TCw9bCIVReNsPo4WksyiW0C2J7_VT9szLjJHQkdzl8oa1X17a5SpNZ1zAa9v_K_J6wJphXj-SkChhprDu4_xkthuJyHfAKueFIbswc9hZyvg5hbMgIb-IIxnXkFOFwCwfq6YFaxBHz-5nQ1K8HtJifUCUSNkVIz9fK7YlThNIq21ZS6EffO8bNmM7uYc6N0DUd5F5HlT7obYVhsNbTlAfc"/>
+</div>
+</td>
+<td class="py-6 px-4">
+<p class="font-bold text-on-surface">Sofía Ortega Ruiz</p>
+<p class="text-[10px] text-on-surface-variant opacity-60">Ingreso: Otoño 2023</p>
+</td>
+<td class="py-6 px-4">
+<span class="font-mono text-primary/80">UBBJ-2023-0112</span>
+</td>
+<td class="py-6 px-4 text-on-surface-variant">Estudios Históricos</td>
+<td class="py-6 px-4 text-on-surface-variant">s.ortega.r@ubbj.edu.mx</td>
+<td class="py-6 px-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Activo
+                                    </span>
+</td>
+<td class="py-6 px-8 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer / Pagination -->
+<div class="p-6 border-t border-[#1b1c1d] flex items-center justify-between">
+<p class="text-xs text-on-surface-variant font-label">Mostrando 4 de 1,284 expedientes académicos</p>
+<div class="flex space-x-2">
+<button class="px-4 py-2 bg-surface-container-lowest text-on-surface rounded-sm text-xs border border-[#343536] hover:bg-surface-container-highest transition-colors">Anterior</button>
+<button class="px-4 py-2 bg-primary-container text-on-primary-container rounded-sm text-xs font-bold transition-all">Siguiente</button>
+</div>
+</div>
+</section>
+<!-- Bottom Dashboard Widget (Asymmetric Bento Component) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-low p-8 rounded-xl flex items-center justify-between">
+<div class="max-w-md">
+<h3 class="text-lg font-headline font-bold text-on-surface mb-2">Resumen de Matrícula Vigente</h3>
+<p class="text-sm text-on-surface-variant mb-6">El ciclo académico actual muestra una retención del 94.2% con respecto al periodo anterior.</p>
+<div class="h-2 w-full bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container w-[94.2%]"></div>
+</div>
+</div>
+<div class="hidden lg:block text-right">
+<span class="block text-4xl font-headline font-black text-primary">94.2%</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant">Tasa de Permanencia</span>
+</div>
+</div>
+<div class="bg-primary/5 p-8 rounded-xl border border-primary/10 flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary text-3xl mb-4" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<div>
+<h3 class="text-base font-headline font-bold text-on-surface">Validación de Datos</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">Última auditoría realizada hoy a las 09:12 AM por el Sistema Central.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- System Footer -->
+<footer class="mt-auto py-6 px-12 border-t border-[#1b1c1d] flex justify-between items-center bg-[#0d0e0f]">
+<p class="text-[10px] font-label text-on-surface-variant opacity-50 uppercase tracking-[0.3em]">© 2024 Universidades para el Bienestar Benito Juárez García • Ledger v4.0</p>
+<div class="flex space-x-6">
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase cursor-pointer hover:opacity-80 transition-opacity">Privacidad</span>
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase cursor-pointer hover:opacity-80 transition-opacity">Términos del Archivo</span>
+</div>
+</footer>
+</main>
+</body></html>

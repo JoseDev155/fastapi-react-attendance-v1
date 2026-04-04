@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Instrument+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;family=Manrope:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary": "#2e3133",
+            "on-primary": "#690007",
+            "tertiary-container": "#54575a",
+            "background": "#121314",
+            "inverse-on-surface": "#303031",
+            "primary-container": "#a82020",
+            "on-tertiary-fixed": "#191c1e",
+            "surface-tint": "#ffb4ac",
+            "surface-dim": "#121314",
+            "on-error-container": "#ffdad6",
+            "secondary-fixed": "#e2e2e6",
+            "on-surface-variant": "#dfbfbc",
+            "surface-container-lowest": "#0d0e0f",
+            "surface-container-high": "#292a2b",
+            "secondary-fixed-dim": "#c5c6ca",
+            "surface": "#121314",
+            "on-secondary-container": "#b4b5b8",
+            "outline": "#a78a87",
+            "primary": "#ffb4ac",
+            "tertiary-fixed-dim": "#c4c7ca",
+            "primary-fixed": "#ffdad6",
+            "on-secondary-fixed-variant": "#45474a",
+            "tertiary": "#c4c7ca",
+            "outline-variant": "#58413f",
+            "secondary-container": "#45474a",
+            "primary-fixed-dim": "#ffb4ac",
+            "on-surface": "#e3e2e3",
+            "on-secondary-fixed": "#191c1e",
+            "error": "#ffb4ab",
+            "on-primary-container": "#ffbdb6",
+            "surface-container-highest": "#343536",
+            "error-container": "#93000a",
+            "inverse-primary": "#b32827",
+            "inverse-surface": "#e3e2e3",
+            "tertiary-fixed": "#e1e3e6",
+            "on-tertiary-fixed-variant": "#44474a",
+            "surface-bright": "#38393a",
+            "on-primary-fixed-variant": "#900b12",
+            "secondary": "#c5c6ca",
+            "surface-container": "#1f2021",
+            "surface-container-low": "#1b1c1d",
+            "on-secondary": "#2e3133",
+            "surface-variant": "#343536",
+            "on-error": "#690005",
+            "on-background": "#e3e2e3",
+            "on-tertiary-container": "#cbcdd0",
+            "on-primary-fixed": "#410003"
+          },
+          fontFamily: {
+            "headline": ["Instrument Sans", "Manrope"],
+            "body": ["Inter"],
+            "label": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    body { font-family: 'Inter', sans-serif; background-color: #121314; color: #e3e2e3; }
+    .headline-premium { font-family: 'Instrument Sans', sans-serif; letter-spacing: -0.02em; }
+    .glass-panel { backdrop-filter: blur(12px); background-color: rgba(52, 53, 54, 0.4); }
+    .recessed-input { background-color: #0d0e0f; border-left: 2px solid transparent; transition: border-color 0.2s; }
+    .recessed-input:focus-within { border-left-color: #ffb4ac; }
+  </style>
+</head>
+<body class="bg-background text-on-surface overflow-x-hidden">
+<!-- TopNavBar Implementation -->
+<nav class="bg-[#121314] flex justify-between items-center w-full px-12 py-4 docked full-width top-0 z-50">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#ffb4ac]">Sovereign Ledger</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-[#e3e2e3] opacity-70 hover:bg-[#343536] transition-colors duration-300 px-3 py-1 rounded text-sm" href="#">Panel</a>
+<a class="text-[#ffb4ac] border-b-2 border-[#ffb4ac] pb-1 hover:bg-[#343536] transition-colors duration-300 px-3 py-1 text-sm" href="#">Asistencias</a>
+<a class="text-[#e3e2e3] opacity-70 hover:bg-[#343536] transition-colors duration-300 px-3 py-1 rounded text-sm" href="#">Ciclos</a>
+<a class="text-[#e3e2e3] opacity-70 hover:bg-[#343536] transition-colors duration-300 px-3 py-1 rounded text-sm" href="#">Reportes</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-[#e3e2e3]/70 cursor-pointer p-2 rounded-full hover:bg-[#343536] transition-colors">notifications</span>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined text-[#e3e2e3]/70 cursor-pointer p-2 rounded-full hover:bg-[#343536] transition-colors">settings</span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="Perfil del Administrador" data-alt="professional portrait of a high-level academic administrator in dark business attire with neutral studio lighting and a clean grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW_AKonZET7S4D5EZ2OpkkbVNkjBJk4sy7L8XraAZalqu39vAgz5UCSjH3eVJTG_mC6izamPWxVEZLaWfqydn0cycWI3fnMg_-aZKeD2FcXDTwSxk4EXXN0n1Egc2kVOnBeZx2E5LkQUMPDWeWya-IbRm5VpZ_6PboMHHM9DFBD2RbPzdwtlA498HCPuJKiN0gqhH2twwkacL69r0hdSrhKsiCJfSv9KulfRYqUBkNU_cASFQsI_JZz2qAy3cmIua_tmXzIav88p8"/>
+</div>
+</div>
+</nav>
+<!-- Content Canvas -->
+<main class="min-h-screen px-12 pt-8 pb-16 max-w-[1600px] mx-auto">
+<!-- Status Bar & Navigation -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div class="space-y-4">
+<button class="flex items-center gap-2 text-primary group transition-all">
+<span class="material-symbols-outlined text-sm group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="text-xs uppercase tracking-widest font-semibold">Resumen Institucional</span>
+</button>
+<div>
+<h1 class="text-4xl md:text-5xl font-bold headline-premium text-on-surface">Listado de Asistencias</h1>
+<p class="text-on-surface-variant font-medium mt-1">UBBJ Academic Ledger — Ciclo de Primavera 2024</p>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<!-- Search -->
+<div class="recessed-input flex items-center px-4 py-2 w-full sm:w-64 rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface placeholder:text-on-surface-variant/50 w-full" placeholder="Buscar registros..." type="text"/>
+</div>
+<!-- Filter Toggle -->
+<button class="bg-surface-container-highest flex items-center gap-2 px-6 py-2 rounded-md hover:bg-surface-bright transition-all group">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span class="text-sm font-medium">Filtros de Archivo</span>
+</button>
+</div>
+</div>
+<!-- Attendance Ledger Table -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden shadow-[40px_0_60px_-5px_rgba(13,14,15,0.6)]">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high border-b border-outline-variant/10">
+<th class="px-8 py-6 text-xs uppercase tracking-[0.2em] font-bold text-on-surface-variant">Entidad Estudiantil</th>
+<th class="px-8 py-6 text-xs uppercase tracking-[0.2em] font-bold text-on-surface-variant">ID de Acceso</th>
+<th class="px-8 py-6 text-xs uppercase tracking-[0.2em] font-bold text-on-surface-variant">Entrada a Bóveda</th>
+<th class="px-8 py-6 text-xs uppercase tracking-[0.2em] font-bold text-on-surface-variant">Estado</th>
+<th class="px-8 py-6 text-xs uppercase tracking-[0.2em] font-bold text-on-surface-variant">Notas de Registro</th>
+<th class="px-8 py-6 text-xs uppercase tracking-[0.2em] font-bold text-on-surface-variant text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="text-body">
+<!-- Row 1 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-bright transition-colors duration-200">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center border border-primary/20">
+<span class="text-primary text-xs font-bold">AJ</span>
+</div>
+<div>
+<div class="font-bold text-on-surface text-base">Alaric Julian</div>
+<div class="text-xs text-on-surface-variant">B.Arch Arquitectura</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm font-mono text-on-surface-variant">UB-2024-8891</td>
+<td class="px-8 py-6 text-sm text-on-surface">08:02 AM</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1b4332]/40 text-[#52b788] border border-[#52b788]/20 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#52b788]"></span>
+                  Presente
+                </span>
+</td>
+<td class="px-8 py-6 text-sm text-on-surface-variant italic">Llegó antes de la asamblea matutina.</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low hover:bg-surface-bright transition-colors duration-200">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center border border-primary/20">
+<span class="text-primary text-xs font-bold">BR</span>
+</div>
+<div>
+<div class="font-bold text-on-surface text-base">Beatrix Rose</div>
+<div class="text-xs text-on-surface-variant">Filología Clásica</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm font-mono text-on-surface-variant">UB-2024-1022</td>
+<td class="px-8 py-6 text-sm text-on-surface">08:24 AM</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#4a3a00]/40 text-[#ffd60a] border border-[#ffd60a]/20 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ffd60a]"></span>
+                  Retardo
+                </span>
+</td>
+<td class="px-8 py-6 text-sm text-on-surface-variant italic">Retraso en tránsito reportado vía app.</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-bright transition-colors duration-200">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center border border-primary/20">
+<span class="text-primary text-xs font-bold">CK</span>
+</div>
+<div>
+<div class="font-bold text-on-surface text-base">Cillian Knight</div>
+<div class="text-xs text-on-surface-variant">Física Teórica</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm font-mono text-on-surface-variant">UB-2024-5541</td>
+<td class="px-8 py-6 text-sm text-on-surface">—</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#5a0001]/40 text-[#ffb4ab] border border-[#ffb4ab]/20 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#ffb4ab]"></span>
+                  Ausente
+                </span>
+</td>
+<td class="px-8 py-6 text-sm text-on-surface-variant italic">Sin autorización previa registrada.</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low hover:bg-surface-bright transition-colors duration-200">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center border border-primary/20">
+<span class="text-primary text-xs font-bold">DM</span>
+</div>
+<div>
+<div class="font-bold text-on-surface text-base">Daphne Moreau</div>
+<div class="text-xs text-on-surface-variant">Derecho Internacional</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm font-mono text-on-surface-variant">UB-2024-9902</td>
+<td class="px-8 py-6 text-sm text-on-surface">07:55 AM</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1b4332]/40 text-[#52b788] border border-[#52b788]/20 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#52b788]"></span>
+                  Presente
+                </span>
+</td>
+<td class="px-8 py-6 text-sm text-on-surface-variant italic">Registro limpio.</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="bg-surface-container-lowest hover:bg-surface-bright transition-colors duration-200">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center border border-primary/20">
+<span class="text-primary text-xs font-bold">EW</span>
+</div>
+<div>
+<div class="font-bold text-on-surface text-base">Elias Vance</div>
+<div class="text-xs text-on-surface-variant">Ética Cibernética</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm font-mono text-on-surface-variant">UB-2024-3312</td>
+<td class="px-8 py-6 text-sm text-on-surface">08:10 AM</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1b4332]/40 text-[#52b788] border border-[#52b788]/20 text-[10px] font-bold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#52b788]"></span>
+                  Presente
+                </span>
+</td>
+<td class="px-8 py-6 text-sm text-on-surface-variant italic">Registro limpio.</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Ledger Footer -->
+<div class="bg-surface-container-high px-8 py-4 flex items-center justify-between">
+<div class="text-xs text-on-surface-variant font-medium">
+          Mostrando <span class="text-primary">5</span> de <span class="text-on-surface">1,248</span> Entradas
+        </div>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="px-3 h-8 flex items-center justify-center rounded bg-primary-container text-white text-xs font-bold">1</button>
+<button class="px-3 h-8 flex items-center justify-center rounded hover:bg-surface-bright transition-colors text-xs">2</button>
+<button class="px-3 h-8 flex items-center justify-center rounded hover:bg-surface-bright transition-colors text-xs">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Attendance Pulse (Visualization Component) -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-low p-8 rounded-xl">
+<p class="text-xs uppercase tracking-widest font-bold text-on-surface-variant mb-6">Pulso de Asistencia</p>
+<div class="flex items-end gap-1 h-24 mb-6">
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[40%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[65%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[85%]"></div>
+<div class="flex-1 bg-primary rounded-t-sm h-[95%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[60%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[75%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t-sm h-[80%]"></div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<h3 class="text-2xl font-bold headline-premium">94.2%</h3>
+<p class="text-xs text-on-surface-variant">Promedio Diario</p>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between">
+<p class="text-xs uppercase tracking-widest font-bold text-on-surface-variant">Resumen de Bóveda</p>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-sm">Presentes Hoy</span>
+<span class="font-mono text-primary font-bold">1,180</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[94.5%]"></div>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/10 text-[10px] text-on-surface-variant uppercase tracking-widest">
+          Última verificación: 08:30 AM
+        </div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between border-l-4 border-primary">
+<p class="text-xs uppercase tracking-widest font-bold text-on-surface-variant">Acciones Rápidas</p>
+<div class="grid grid-cols-2 gap-4">
+<button class="bg-surface-container-highest p-4 rounded-lg flex flex-col items-center gap-2 hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined text-primary">add_circle</span>
+<span class="text-[10px] font-bold uppercase">Nueva Entrada</span>
+</button>
+<button class="bg-surface-container-highest p-4 rounded-lg flex flex-col items-center gap-2 hover:bg-surface-bright transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">print</span>
+<span class="text-[10px] font-bold uppercase text-on-surface-variant">Exportar PDF</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Side Navigation Suppressed for Listing View as per focus journey rules -->
+</body></html>

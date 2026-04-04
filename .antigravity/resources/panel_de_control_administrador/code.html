@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary": "#2e3133",
+            "on-primary": "#690007",
+            "tertiary-container": "#54575a",
+            "background": "#121314",
+            "inverse-on-surface": "#303031",
+            "primary-container": "#a82020",
+            "on-tertiary-fixed": "#191c1e",
+            "surface-tint": "#ffb4ac",
+            "surface-dim": "#121314",
+            "on-error-container": "#ffdad6",
+            "secondary-fixed": "#e2e2e6",
+            "on-surface-variant": "#dfbfbc",
+            "surface-container-lowest": "#0d0e0f",
+            "surface-container-high": "#292a2b",
+            "secondary-fixed-dim": "#c5c6ca",
+            "surface": "#121314",
+            "on-secondary-container": "#b4b5b8",
+            "outline": "#a78a87",
+            "primary": "#ffb4ac",
+            "tertiary-fixed-dim": "#c4c7ca",
+            "primary-fixed": "#ffdad6",
+            "on-secondary-fixed-variant": "#45474a",
+            "tertiary": "#c4c7ca",
+            "outline-variant": "#58413f",
+            "secondary-container": "#45474a",
+            "primary-fixed-dim": "#ffb4ac",
+            "on-surface": "#e3e2e3",
+            "on-secondary-fixed": "#191c1e",
+            "error": "#ffb4ab",
+            "on-primary-container": "#ffbdb6",
+            "surface-container-highest": "#343536",
+            "error-container": "#93000a",
+            "inverse-primary": "#b32827",
+            "inverse-surface": "#e3e2e3",
+            "tertiary-fixed": "#e1e3e6",
+            "on-tertiary-fixed-variant": "#44474a",
+            "surface-bright": "#38393a",
+            "on-primary-fixed-variant": "#900b12",
+            "secondary": "#c5c6ca",
+            "surface-container": "#1f2021",
+            "surface-container-low": "#1b1c1d",
+            "on-secondary": "#2e3133",
+            "surface-variant": "#343536",
+            "on-error": "#690005",
+            "on-background": "#e3e2e3",
+            "on-tertiary-container": "#cbcdd0",
+            "on-primary-fixed": "#410003"
+          },
+          fontFamily: {
+            "headline": ["Instrument Sans", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "label": ["Inter", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .institutional-gradient {
+      background: linear-gradient(135deg, #ffb4ac 0%, #a82020 100%);
+    }
+    .glass-effect {
+      backdrop-filter: blur(12px);
+      background-color: rgba(52, 53, 54, 0.4);
+    }
+    body {
+      background-color: #121314;
+      color: #e3e2e3;
+      font-family: 'Inter', sans-serif;
+    }
+    .ledger-recessed {
+      background-color: #0d0e0f;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopNavBar Implementation -->
+<nav class="bg-[#121314] dark:bg-[#121314] flex justify-between items-center w-full px-12 py-4 z-50 sticky top-0">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#ffb4ac]">Sovereign Ledger</span>
+<div class="hidden md:flex gap-6 items-center">
+<!-- Panel is Active -->
+<a class="text-[#ffb4ac] border-b-2 border-[#ffb4ac] pb-1 font-headline text-sm tracking-tight transition-transform active:scale-98" href="#">Panel</a>
+<a class="text-[#e3e2e3] opacity-70 font-headline text-sm tracking-tight hover:bg-[#343536] transition-colors duration-300 px-2 py-1 rounded" href="#">Asistencia</a>
+<a class="text-[#e3e2e3] opacity-70 font-headline text-sm tracking-tight hover:bg-[#343536] transition-colors duration-300 px-2 py-1 rounded" href="#">Ciclos</a>
+<a class="text-[#e3e2e3] opacity-70 font-headline text-sm tracking-tight hover:bg-[#343536] transition-colors duration-300 px-2 py-1 rounded" href="#">Reportes</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-[#e3e2e3] opacity-70">
+<button class="material-symbols-outlined hover:bg-[#343536] p-2 rounded-full transition-colors">notifications</button>
+<button class="material-symbols-outlined hover:bg-[#343536] p-2 rounded-full transition-colors">settings</button>
+</div>
+<div class="h-8 w-[1px] bg-[#343536]/30"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-on-surface uppercase tracking-widest leading-none">Dr. Alberto Pérez</p>
+<p class="text-[10px] text-on-surface-variant leading-tight">Administrador</p>
+</div>
+<img alt="Perfil del Administrador" class="h-9 w-9 rounded-full object-cover grayscale opacity-90 border border-outline-variant/30" data-alt="close-up portrait of a professional man in spectacles and dark suit with neutral background and soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw27_66lEmbeka7sPHehCKP2P4Z9oZQE0zps1S3jkOfMoMENJT0ZDEVin45mJrzl6WiZ6tlhql5RMKQyQnSbG21LgfTgbombS6nrB4R-P1ISxk9WU0lYIpHqZzQeXiJXCMJn3YQnuisHzhv91PmTNyQqx5SJuwFkKPCH3IoapIEGhw56VE6QKURKoIcPQ7_TCHnMUjhgfmS1KoFvJC2HBsSS8kEa0wC304tSwYibiD2F3dHjWJthfnUTCNdgrw7obP7G4XZiSRSSY"/>
+</div>
+</div>
+</nav>
+<!-- Status Bar / Sub-header -->
+<div class="bg-surface-container-low px-12 py-3 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] font-medium text-on-surface-variant uppercase tracking-widest">Bóveda del Sistema Activa · Academic Ledger v1.0</span>
+</div>
+<div class="flex items-center gap-4 text-xs font-medium text-on-surface-variant">
+<span>Ciclo: Invierno 2024</span>
+<span class="opacity-30">|</span>
+<span>Último Respaldo: 14:20 GMT</span>
+</div>
+</div>
+<main class="flex-1 px-12 py-10 max-w-[1600px] mx-auto w-full">
+<!-- Header Section -->
+<header class="mb-12">
+<h1 class="text-5xl font-headline font-bold text-on-surface tracking-tighter mb-2">Vista General Institucional</h1>
+<p class="text-on-surface-variant font-body max-w-2xl">Visualización de métricas de participación académica actual y registros de bóveda para el ecosistema institucional de la UBBJ.</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- KPI: Overall Attendance -->
+<section class="col-span-12 lg:col-span-4 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between min-h-[240px]">
+<div>
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-6">Asistencia General</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-6xl font-headline font-bold text-primary tracking-tighter">94.2</span>
+<span class="text-2xl font-headline text-on-surface-variant">%</span>
+</div>
+</div>
+<div class="mt-4">
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[94.2%]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-3 uppercase tracking-wider">+1.2% desde el último ciclo</p>
+</div>
+</section>
+<!-- KPI: Punctuality Index -->
+<section class="col-span-12 lg:col-span-4 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between min-h-[240px]">
+<div>
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-6">Índice de Puntualidad</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-6xl font-headline font-bold text-on-surface tracking-tighter">88.7</span>
+<span class="text-2xl font-headline text-on-surface-variant">Pt</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1 h-12 flex items-end gap-1">
+<div class="w-full bg-primary/20 h-[60%] rounded-t-sm"></div>
+<div class="w-full bg-primary/20 h-[40%] rounded-t-sm"></div>
+<div class="w-full bg-primary/20 h-[80%] rounded-t-sm"></div>
+<div class="w-full bg-primary/20 h-[70%] rounded-t-sm"></div>
+<div class="w-full bg-primary h-[90%] rounded-t-sm shadow-[0_0_15px_rgba(255,180,172,0.3)]"></div>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl">trending_up</span>
+</div>
+</section>
+<!-- Shortcuts / Actions -->
+<section class="col-span-12 lg:col-span-4 grid grid-cols-1 gap-4">
+<button class="institutional-gradient text-on-primary p-6 rounded-xl flex items-center justify-between group transition-all hover:scale-[1.02]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl" data-weight="fill">add_circle</span>
+<span class="font-headline font-bold text-lg tracking-tight">Gestión de Ciclos</span>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="bg-surface-container-highest text-on-surface p-6 rounded-xl flex items-center justify-between group transition-all hover:bg-surface-bright border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl">group</span>
+<span class="font-headline font-bold text-lg tracking-tight">Expedientes de Estudiantes</span>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="bg-surface-container-highest text-on-surface p-6 rounded-xl flex items-center justify-between group transition-all hover:bg-surface-bright border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl">description</span>
+<span class="font-headline font-bold text-lg tracking-tight">Generar Reportes</span>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</section>
+<!-- Main Trend Chart - Visualized as Attendance Pulse -->
+<section class="col-span-12 bg-surface-container-low p-10 rounded-xl">
+<div class="flex justify-between items-start mb-12">
+<div>
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Pulso de Asistencia</h3>
+<p class="text-3xl font-headline font-bold text-on-surface tracking-tight">Análisis de Tendencia Mensual</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest rounded-lg border border-outline-variant/10">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-xs font-medium uppercase tracking-wider">Presente</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest rounded-lg border border-outline-variant/10">
+<span class="w-2 h-2 rounded-full bg-on-surface-variant opacity-40"></span>
+<span class="text-xs font-medium uppercase tracking-wider">Objetivo</span>
+</div>
+</div>
+</div>
+<!-- Attendance Pulse Visualization -->
+<div class="relative h-64 w-full ledger-recessed rounded-xl p-8 overflow-hidden group">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="pulse-grad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgba(255,180,172,0.4); stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:rgba(255,180,172,0); stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,150 Q50,140 100,160 T200,120 T300,140 T400,100 T500,80 T600,110 T700,60 T800,90 T900,40 T1000,70 L1000,200 L0,200 Z" fill="url(#pulse-grad)"></path>
+<path d="M0,150 Q50,140 100,160 T200,120 T300,140 T400,100 T500,80 T600,110 T700,60 T800,90 T900,40 T1000,70" fill="none" stroke="#ffb4ac" stroke-linecap="round" stroke-width="3"></path>
+<!-- Target Line (Faint) -->
+<line opacity="0.1" stroke="#e3e2e3" stroke-dasharray="10,10" stroke-width="1" x1="0" x2="1000" y1="50" y2="50"></line>
+</svg>
+<!-- Tooltip Simulation -->
+<div class="absolute left-1/2 top-10 transform -translate-x-1/2 glass-effect px-6 py-4 rounded-xl border border-outline-variant/20 shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Pico de Asistencia</p>
+<p class="text-2xl font-headline font-bold text-on-surface">97.8%</p>
+<p class="text-[10px] text-on-surface-variant">22 de noviembre, 2023</p>
+</div>
+</div>
+<div class="mt-8 flex justify-between text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant opacity-60">
+<span>Agosto</span>
+<span>Septiembre</span>
+<span>Octubre</span>
+<span>Noviembre</span>
+<span>Diciembre</span>
+<span>Enero</span>
+</div>
+</section>
+<!-- Bottom List Section: Recent Log Exceptions -->
+<section class="col-span-12 bg-surface-container-low rounded-xl overflow-hidden">
+<div class="p-8 pb-4">
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Alertas de Bóveda</h3>
+<p class="text-2xl font-headline font-bold text-on-surface tracking-tight">Excepciones Recientes del Registro</p>
+</div>
+<div class="w-full">
+<!-- Table Header -->
+<div class="grid grid-cols-12 px-8 py-4 bg-surface-container-lowest text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
+<div class="col-span-5">Entidad / Estudiante</div>
+<div class="col-span-3">Identificador</div>
+<div class="col-span-2 text-center">Estado</div>
+<div class="col-span-2 text-right">Acción</div>
+</div>
+<!-- Rows -->
+<div class="grid grid-cols-12 px-8 py-5 items-center bg-surface-container-low hover:bg-surface-bright transition-colors group">
+<div class="col-span-5 flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center font-headline font-bold text-primary">MS</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Mendoza, Sofia</p>
+<p class="text-[10px] text-on-surface-variant">Matemáticas Aplicadas - Ciclo IV</p>
+</div>
+</div>
+<div class="col-span-3 font-mono text-xs opacity-50">#UBBJ-2024-9981</div>
+<div class="col-span-2 flex justify-center">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter bg-error-container text-error">Injustificada</span>
+</div>
+<div class="col-span-2 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">more_vert</button>
+</div>
+</div>
+<div class="grid grid-cols-12 px-8 py-5 items-center bg-surface-container-lowest hover:bg-surface-bright transition-colors group">
+<div class="col-span-5 flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center font-headline font-bold text-primary">RL</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Ramirez, Luis</p>
+<p class="text-[10px] text-on-surface-variant">Ingeniería Estructural - Ciclo II</p>
+</div>
+</div>
+<div class="col-span-3 font-mono text-xs opacity-50">#UBBJ-2024-4422</div>
+<div class="col-span-2 flex justify-center">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter bg-tertiary-container/30 text-tertiary">Registro Demorado</span>
+</div>
+<div class="col-span-2 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">more_vert</button>
+</div>
+</div>
+<div class="grid grid-cols-12 px-8 py-5 items-center bg-surface-container-low hover:bg-surface-bright transition-colors group">
+<div class="col-span-5 flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary-container/20 flex items-center justify-center font-headline font-bold text-primary">AO</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Ortiz, Ana</p>
+<p class="text-[10px] text-on-surface-variant">Ciencias Sociales - Ciclo VI</p>
+</div>
+</div>
+<div class="col-span-3 font-mono text-xs opacity-50">#UBBJ-2024-1055</div>
+<div class="col-span-2 flex justify-center">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter bg-error-container text-error">Injustificada</span>
+</div>
+<div class="col-span-2 text-right">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">more_vert</button>
+</div>
+</div>
+</div>
+<div class="p-6 bg-surface-container-lowest/50 border-t border-outline-variant/5 text-center">
+<button class="text-[10px] font-bold uppercase tracking-widest text-primary hover:tracking-[0.3em] transition-all">Ver Todos los Registros</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto px-12 py-8 bg-surface-container-lowest flex justify-between items-end border-t border-outline-variant/5">
+<div>
+<p class="text-xs font-bold text-[#ffb4ac] tracking-tighter">UBBJ Sovereign Ledger</p>
+<p class="text-[10px] text-on-surface-variant mt-1 opacity-50">© 2024 Institutional Systems. Todos los derechos reservados.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Seguridad de Bóveda</a>
+<a class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Registros de Auditoría</a>
+<a class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Soporte</a>
+</div>
+</footer>
+</body></html>

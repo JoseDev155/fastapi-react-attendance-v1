@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Generación de Reportes - UBBJ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "background": "#121314",
+              "on-error-container": "#ffdad6",
+              "primary": "#ffb4ac",
+              "surface-container-lowest": "#0d0e0f",
+              "surface-container-low": "#1b1c1d",
+              "on-tertiary-container": "#cbcdd0",
+              "on-primary-fixed": "#410003",
+              "surface-container-high": "#292a2b",
+              "on-error": "#690005",
+              "error": "#ffb4ab",
+              "tertiary-container": "#54575a",
+              "tertiary-fixed": "#e1e3e6",
+              "on-secondary-fixed-variant": "#45474a",
+              "outline": "#a78a87",
+              "secondary-fixed": "#e2e2e6",
+              "surface-container-highest": "#343536",
+              "secondary-container": "#45474a",
+              "on-secondary": "#2e3133",
+              "on-tertiary-fixed": "#191c1e",
+              "outline-variant": "#58413f",
+              "on-secondary-container": "#b4b5b8",
+              "inverse-surface": "#e3e2e3",
+              "inverse-primary": "#b32827",
+              "on-primary": "#690007",
+              "secondary": "#c5c6ca",
+              "surface-tint": "#ffb4ac",
+              "primary-container": "#a82020",
+              "surface-dim": "#121314",
+              "on-primary-fixed-variant": "#900b12",
+              "on-background": "#e3e2e3",
+              "surface": "#121314",
+              "on-tertiary-fixed-variant": "#44474a",
+              "on-primary-container": "#ffbdb6",
+              "surface-container": "#1f2021",
+              "tertiary": "#c4c7ca",
+              "tertiary-fixed-dim": "#c4c7ca",
+              "surface-bright": "#38393a",
+              "secondary-fixed-dim": "#c5c6ca",
+              "on-surface-variant": "#dfbfbc",
+              "on-surface": "#e3e2e3",
+              "surface-variant": "#343536",
+              "primary-fixed-dim": "#ffb4ac",
+              "primary-fixed": "#ffdad6",
+              "on-tertiary": "#2e3133",
+              "error-container": "#93000a",
+              "on-secondary-fixed": "#191c1e",
+              "inverse-on-surface": "#303031"
+            },
+            fontFamily: {
+              "headline": ["Instrument Sans", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(52, 53, 54, 0.4);
+        backdrop-filter: blur(12px);
+      }
+      .sovereign-shadow {
+        box-shadow: 40px 0 60px -5px rgba(13, 14, 15, 0.6);
+      }
+      .recessed-input {
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen flex">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col pt-20 bg-[#121314] dark:bg-[#121314] w-64 sovereign-shadow z-50">
+<div class="px-8 mb-10">
+<h1 class="text-lg font-black text-[#ffb4ac] uppercase tracking-widest">The Sovereign Ledger</h1>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter opacity-60">Institutional Vault</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-3 hover:text-[#e3e2e3] hover:bg-[#1b1c1d] transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="history_edu">history_edu</span>
+<span class="text-xs font-label">Academic Cycles</span>
+</a>
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-3 hover:text-[#e3e2e3] hover:bg-[#1b1c1d] transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="group">group</span>
+<span class="text-xs font-label">Student Records</span>
+</a>
+<!-- Active State Logic: Reports = Report Engine -->
+<a class="flex items-center bg-gradient-to-r from-[#ffb4ac]/10 to-transparent text-[#ffb4ac] border-l-2 border-[#ffb4ac] px-4 py-3 group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="text-xs font-label font-bold">Report Engine</span>
+</a>
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-3 hover:text-[#e3e2e3] hover:bg-[#1b1c1d] transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="text-xs font-label">Security Settings</span>
+</a>
+</nav>
+<div class="mt-auto pb-8 border-t border-surface-container-low pt-4">
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-3 hover:text-[#e3e2e3] hover:bg-[#1b1c1d] transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="terminal">terminal</span>
+<span class="text-xs font-label">System Logs</span>
+</a>
+<a class="flex items-center text-[#e3e2e3]/50 px-4 py-3 hover:text-[#e3e2e3] hover:bg-[#1b1c1d] transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="help_center">help_center</span>
+<span class="text-xs font-label">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 min-h-screen flex flex-col relative">
+<!-- TopAppBar (Authority Source: JSON) -->
+<header class="flex justify-between items-center w-full px-12 h-16 max-w-full mx-auto bg-[#121314] dark:bg-[#121314] sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#ffb4ac]">UBBJ</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-[#e3e2e3]/60 hover:text-[#e3e2e3] transition-colors text-xs font-label uppercase tracking-widest" href="#">Cycles</a>
+<a class="text-[#e3e2e3]/60 hover:text-[#e3e2e3] transition-colors text-xs font-label uppercase tracking-widest" href="#">Students</a>
+<a class="text-[#ffb4ac] border-b-2 border-[#ffb4ac] pb-1 text-xs font-label uppercase tracking-widest" href="#">Reports</a>
+<a class="text-[#e3e2e3]/60 hover:text-[#e3e2e3] transition-colors text-xs font-label uppercase tracking-widest" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#e3e2e3]/60 hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-surface-container-high">
+<div class="text-right">
+<p class="text-[11px] font-bold text-on-surface leading-none uppercase">Dr. Alberto Pérez</p>
+<p class="text-[9px] text-primary leading-none uppercase tracking-tighter mt-1">Administrador</p>
+</div>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a distinguished male university administrator with glasses in a formal suit against a neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPN8bpSJBZqja6bOesMLW4ZHkzcPj00LPWllEAkLFfgtFNtWVTngIJvmEfEkhP7F0KnzSJbCLYIi1cJjM9WmURT5KHRz8N2NqtoDfEHpFDoPJxid620xXP5ByXMxxzKyocmvBQfVjpcejNNKWKKsmbZ803rfNjfX2x3iLxTw28OOxOx8uS5Nc7nquIkqORKPDRWfLXg4wP3kLtuQp8OrVB9WBHS6Fox7ifaoKqm0JB92V-XHM-TL8Y52R8R4ODggQQBLRm9KPSh34"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Divider Logic -->
+<div class="bg-[#1b1c1d] h-px w-full"></div>
+<section class="p-12 max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-12">
+<div>
+<button class="flex items-center gap-2 text-primary text-xs font-label uppercase tracking-widest hover:opacity-80 transition-all mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span>
+                        Regresar
+                    </button>
+<h2 class="font-headline text-4xl font-bold tracking-tight text-on-surface">Generación de Reportes</h2>
+<p class="text-on-surface-variant font-label text-sm mt-2 max-w-xl">Configure los parámetros para extraer registros académicos detallados y métricas de rendimiento institucional.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 border border-outline-variant/15 text-primary text-xs font-bold uppercase tracking-widest rounded-md hover:bg-surface-container-high transition-all">
+                        Exportar Excel
+                    </button>
+<button class="px-6 py-3 bg-gradient-to-r from-primary to-primary-container text-on-primary text-xs font-bold uppercase tracking-widest rounded-md hover:opacity-90 transition-all shadow-lg">
+                        Generar Reporte PDF
+                    </button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Filter Form: The Recessed Ledger -->
+<div class="col-span-4 bg-surface-container-low p-8 rounded-lg flex flex-col gap-8">
+<h3 class="font-headline text-lg font-semibold text-primary/80 uppercase tracking-wider">Parámetros</h3>
+<div class="space-y-6">
+<div class="group">
+<label class="block text-[10px] font-label text-on-surface-variant uppercase tracking-widest mb-2 ml-1">Ciclo Académico</label>
+<div class="relative bg-surface-container-lowest h-12 rounded-sm border-l-2 border-transparent group-focus-within:border-primary transition-all flex items-center px-4">
+<select class="bg-transparent border-none text-on-surface text-sm w-full focus:ring-0 appearance-none cursor-pointer">
+<option>Otoño 2023 - 2024</option>
+<option>Primavera 2024</option>
+<option>Verano Intensivo 2024</option>
+</select>
+<span class="material-symbols-outlined text-on-surface-variant pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="group">
+<label class="block text-[10px] font-label text-on-surface-variant uppercase tracking-widest mb-2 ml-1">Grupo</label>
+<div class="relative bg-surface-container-lowest h-12 rounded-sm border-l-2 border-transparent group-focus-within:border-primary transition-all flex items-center px-4">
+<select class="bg-transparent border-none text-on-surface text-sm w-full focus:ring-0 appearance-none cursor-pointer">
+<option>Lic. Medicina 401-A</option>
+<option>Lic. Medicina 402-B</option>
+<option>Lic. Enfermería 201</option>
+</select>
+<span class="material-symbols-outlined text-on-surface-variant pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="group">
+<label class="block text-[10px] font-label text-on-surface-variant uppercase tracking-widest mb-2 ml-1">Rango de Fechas</label>
+<div class="flex gap-2">
+<div class="flex-1 bg-surface-container-lowest h-12 rounded-sm border-l-2 border-transparent group-focus-within:border-primary transition-all flex items-center px-4">
+<input class="bg-transparent border-none text-on-surface text-xs w-full focus:ring-0 color-scheme-dark" type="date"/>
+</div>
+<div class="flex-1 bg-surface-container-lowest h-12 rounded-sm border-l-2 border-transparent group-focus-within:border-primary transition-all flex items-center px-4">
+<input class="bg-transparent border-none text-on-surface text-xs w-full focus:ring-0 color-scheme-dark" type="date"/>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-8 border-t border-surface-container-high">
+<button class="w-full flex justify-between items-center text-on-surface-variant hover:text-primary transition-all group">
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold">Limpiar Filtros</span>
+<span class="material-symbols-outlined text-lg" data-icon="restart_alt">restart_alt</span>
+</button>
+</div>
+</div>
+<!-- Preview Visualization -->
+<div class="col-span-8 space-y-8">
+<!-- Metrics Row -->
+<div class="grid grid-cols-2 gap-8">
+<div class="glass-card p-8 rounded-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="schedule">schedule</span>
+</div>
+<h4 class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Puntualidad Promedio</h4>
+<div class="flex items-baseline gap-2">
+<span class="font-headline text-5xl font-bold text-on-surface">94.2<span class="text-xl text-primary">%</span></span>
+<span class="text-xs text-green-400 font-bold">+2.1%</span>
+</div>
+<!-- Attendance Pulse Visualization -->
+<div class="mt-6 h-12 w-full bg-surface-container-high rounded-sm overflow-hidden flex items-end gap-1 px-1 py-1">
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary-container h-[40%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary-container h-[60%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary-container h-[55%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary-container h-[80%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary-container h-[75%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary-container h-[95%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary-container h-[90%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/80 to-primary-container h-[85%] rounded-t-xs"></div>
+</div>
+</div>
+<div class="glass-card p-8 rounded-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="person_off">person_off</span>
+</div>
+<h4 class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Tasa de Ausentismo</h4>
+<div class="flex items-baseline gap-2">
+<span class="font-headline text-5xl font-bold text-on-surface">5.8<span class="text-xl text-primary">%</span></span>
+<span class="text-xs text-error font-bold">-0.5%</span>
+</div>
+<div class="mt-6 h-12 w-full bg-surface-container-high rounded-sm overflow-hidden flex items-end gap-1 px-1 py-1">
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary-container/40 h-[30%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary-container/40 h-[25%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary-container/40 h-[45%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary-container/40 h-[20%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary-container/40 h-[15%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary-container/40 h-[10%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary-container/40 h-[12%] rounded-t-xs"></div>
+<div class="flex-1 bg-gradient-to-t from-primary/40 to-primary-container/40 h-[8%] rounded-t-xs"></div>
+</div>
+</div>
+</div>
+<!-- Recent Generation Logs / Preview Table -->
+<div class="bg-surface-container-low rounded-lg overflow-hidden">
+<div class="px-8 py-6 border-b border-surface-container-high flex justify-between items-center">
+<h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary">Previsualización de Estudiantes (Top 5)</h4>
+<span class="text-[10px] text-on-surface-variant bg-surface-container-highest px-3 py-1 rounded-full uppercase">Muestra Parcial</span>
+</div>
+<div class="w-full">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-lowest">
+<tr>
+<th class="px-8 py-4 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">Estudiante</th>
+<th class="px-8 py-4 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium text-center">Asistencias</th>
+<th class="px-8 py-4 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium text-center">Retardos</th>
+<th class="px-8 py-4 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium text-right">Estatus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="px-8 py-4">
+<p class="text-sm font-semibold text-on-surface">Mendoza, Beatriz</p>
+<p class="text-[10px] text-on-surface-variant uppercase">ID: 240012</p>
+</td>
+<td class="px-8 py-4 text-center font-headline font-bold text-on-surface">42</td>
+<td class="px-8 py-4 text-center font-headline font-bold text-on-surface">2</td>
+<td class="px-8 py-4 text-right">
+<span class="text-[9px] font-black uppercase border border-primary/20 text-primary px-2 py-1">Sobresaliente</span>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<td class="px-8 py-4">
+<p class="text-sm font-semibold text-on-surface">Reyes, Alejandro</p>
+<p class="text-[10px] text-on-surface-variant uppercase">ID: 240018</p>
+</td>
+<td class="px-8 py-4 text-center font-headline font-bold text-on-surface">40</td>
+<td class="px-8 py-4 text-center font-headline font-bold text-on-surface">0</td>
+<td class="px-8 py-4 text-right">
+<span class="text-[9px] font-black uppercase border border-primary/20 text-primary px-2 py-1">Sobresaliente</span>
+</td>
+</tr>
+<tr class="bg-surface-container-low hover:bg-surface-container-high transition-colors">
+<td class="px-8 py-4">
+<p class="text-sm font-semibold text-on-surface">Silva, Mariana</p>
+<p class="text-[10px] text-on-surface-variant uppercase">ID: 240022</p>
+</td>
+<td class="px-8 py-4 text-center font-headline font-bold text-on-surface">38</td>
+<td class="px-8 py-4 text-center font-headline font-bold text-on-surface">4</td>
+<td class="px-8 py-4 text-right">
+<span class="text-[9px] font-black uppercase border border-on-surface-variant/20 text-on-surface-variant px-2 py-1">Regular</span>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<td class="px-8 py-4">
+<p class="text-sm font-semibold text-on-surface">Vázquez, Carlos</p>
+<p class="text-[10px] text-on-surface-variant uppercase">ID: 240030</p>
+</td>
+<td class="px-8 py-4 text-center font-headline font-bold text-on-surface">35</td>
+<td class="px-8 py-4 text-center font-headline font-bold text-on-surface">12</td>
+<td class="px-8 py-4 text-right">
+<span class="text-[9px] font-black uppercase border border-error/20 text-error px-2 py-1">En Riesgo</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-4 bg-surface-container-lowest border-t border-surface-container-high text-right">
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant">Mostrando 4 de 28 registros encontrados</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contextual Help / Status -->
+<footer class="mt-auto px-12 py-6 border-t border-surface-container-low flex justify-between items-center text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">
+<div class="flex gap-8">
+<span>Última Sincronización: Hace 5 minutos</span>
+<span>Estado del Servidor: Óptimo</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-1.5 w-1.5 rounded-full bg-green-500"></div>
+<span>Ledger Online</span>
+</div>
+</footer>
+</main>
+<!-- Floating Tooltip / Instruction (Optional visual flair) -->
+<div class="fixed bottom-12 right-12 glass-card p-4 rounded-full flex items-center gap-3 border border-outline-variant/10 shadow-2xl">
+<div class="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="pr-4">
+<p class="text-[10px] font-bold uppercase text-on-surface">Asistente Inteligente</p>
+<p class="text-[9px] text-primary">Listo para filtrar datos complejos.</p>
+</div>
+</div>
+</body></html>
