@@ -33,13 +33,6 @@
         <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" />
     </div>
 <br />
-    <img src="./banner/Banner_UBBJ.png" alt="Logo UBBJ" width="300" height="200">
-</div>
-
-<div align="center">
-    <blockquote>
-        <span>Universidades para el Bienestar Benito Juárez García</span>
-    </blockquote>
 </div>
 <hr />
 
