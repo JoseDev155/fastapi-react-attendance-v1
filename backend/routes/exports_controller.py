@@ -25,8 +25,8 @@ async def export_group_template(group_id: str, year: int, month: int, db: Sessio
         excel_stream = generate_attendance_template(year, month, students_data)
         return StreamingResponse(
             excel_stream,
-            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            headers={"Content-Disposition": f"attachment; filename=attendance_template_{year}_{month:02d}.xlsx"}
+            media_type="application/vnd.ms-excel.sheet.macroEnabled.12",
+            headers={"Content-Disposition": f"attachment; filename=attendance_template_{year}_{month:02d}.xlsm"}
         )
     except Exception as e:
          raise HTTPException(status_code=500, detail=str(e))
