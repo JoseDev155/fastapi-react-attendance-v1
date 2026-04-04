@@ -122,14 +122,15 @@ def generate_attendance_template(
     # Llenar datos de estudiantes
     row = 3
     for s_data in students_data:
-        # Columna A: ID Oculto
+        # Columna A: ID Oculto (lo lee el parser al importar)
         ws.cell(row=row, column=1, value=s_data["enrollment_id"])
         ws.cell(row=row, column=2, value=s_data["nickname"])
         ws.cell(row=row, column=3, value=s_data["full_name"]).alignment = alignment_left
-        ws.cell(row=row, column=4, value="07:00") # Entrada teórica
-        
-        # Celdas vacías para los días
-        # Celdas vacías para notas
+        ws.cell(row=row, column=4, value="07:00")  # Hora de entrada teórica (referencia)
+
+        # Las celdas de los días quedan vacías para que el profesor
+        # ingrese la hora de llegada del alumno en formato HH:MM.
+        # Celda vacía = ausente (sin registro de arrival_time).
         row += 1
 
     # Congelar panel para poder scrollear

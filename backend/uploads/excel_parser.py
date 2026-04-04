@@ -1,15 +1,15 @@
 # Librerias
 import re
-from datetime import date, datetime
+from datetime import date, time
 from io import BytesIO
 from sqlalchemy.orm import Session
 import openpyxl
 # Importar directorios del proyecto
-from models import AttendanceStatus
 from repositories import (
-    attendance_search_by_enrollment_and_date as search_by_enrollment_and_date, \
-    attendance_create as create, \
+    attendance_search_by_enrollment_and_date as search_by_enrollment_and_date,
+    attendance_create as create,
     attendance_update as update)
+
 
 def get_month_number(nombre_mes: str) -> int:
     meses = {
@@ -18,109 +18,145 @@ def get_month_number(nombre_mes: str) -> int:
     }
     return meses.get(nombre_mes.lower().strip(), 1)
 
-def translate_status(estado_es: str) -> AttendanceStatus | None:
-    if not estado_es:
+
+def parse_arrival_time(cell_value) -> time | None:
+    """
+    Convierte el valor de una celda del Excel a un objeto time.
+    Acepta:
+      - Objetos time/datetime de openpyxl (cuando la celda tiene formato hora)
+      - Strings con formatos: "HH:MM", "HH:MM:SS", "H:MM AM/PM"
+      - None / cadena vacía → devuelve None (estudiante AUSENTE)
+    """
+    if cell_value is None:
         return None
-        
-    estado = str(estado_es).strip().upper()
-    if estado == "PRESENTE":
-        return AttendanceStatus.PRESENT
-    elif estado == "AUSENTE":
-        return AttendanceStatus.ABSENT
-    elif estado == "TARDE":
-        return AttendanceStatus.LATE
-    elif estado == "JUSTIFICADO":
-        return AttendanceStatus.JUSTIFIED
-    elif estado == "SALIO TEMPRANO" or estado == "SALIO":
-        return AttendanceStatus.LEFT_EARLY
-    return None
+
+    # openpyxl puede devolver directamente un datetime o time
+    if isinstance(cell_value, time):
+        return cell_value
+
+    # openpyxl a veces retorna datetime para celdas con formato hora
+    from datetime import datetime as dt
+    if isinstance(cell_value, dt):
+        return cell_value.time()
+
+    raw = str(cell_value).strip()
+    if not raw:
+        return None
+
+    # Intentar parsear "HH:MM" o "HH:MM:SS"
+    for fmt in ("%H:%M:%S", "%H:%M", "%I:%M %p", "%I:%M:%S %p"):
+        try:
+            return dt.strptime(raw, fmt).time()
+        except ValueError:
+            continue
+
+    return None  # Valor no reconocido → se trata como ausente
+
 
 def process_attendance_excel(file_content: bytes, db: Session) -> dict:
     wb = openpyxl.load_workbook(BytesIO(file_content), data_only=True)
     ws = wb.active
 
-    # Extraer mes y año del encabezado
-    # El encabezado E1 está mergeado pero la celda E1 guarda el valor
+    # ─── Extraer mes y año del encabezado ────────────────────────────────────
+    # La plantilla generada escribe "Registro de Asistencias (Mes AAAA)" en E1
     header_title = ws["E1"].value
     if not header_title:
-         raise ValueError("Encabezado de mes/año no encontrado en E1. Verifique que la columna D (o E) contiene el título del mes.")
-         
-    # Regex para extraer "Registro de Asistencias (Octubre 2025)"
+        raise ValueError(
+            "Encabezado de mes/año no encontrado en E1. "
+            "Confirme que la plantilla tiene el formato correcto."
+        )
+
     match = re.search(r'\((.*?)\s+(\d{4})\)', str(header_title))
     if not match:
         raise ValueError(f"No se pudo extraer el mes y año del texto: {header_title}")
-        
+
     mes_str, year_str = match.groups()
     month = get_month_number(mes_str)
-    year = int(year_str)
+    year  = int(year_str)
 
-    # Identificar las columnas de los días leyendo la Fila 2
-    day_columns = {} # col_index -> day (int)
+    # ─── Identificar columnas de días (Fila 2, a partir de columna E) ────────
+    # Estructura de la plantilla:
+    #   Col A: ENROLLMENT_ID (oculto)
+    #   Col B: APODO
+    #   Col C: NOMBRE COMPLETO
+    #   Col D: HORA ENTRADA (referencia, no se usa para el import)
+    #   Col E…N: días del mes con cabecera "Lun 06", "Mar 07", etc.
+    #   Col N+1: NOTAS / OBSERVACIONES
+    day_columns: dict[int, int] = {}  # col_index → número de día del mes
     max_col = ws.max_column
-    
-    # La columna 1 es ID, 2 es Apodo, 3 es Nombre, 4 es Hora
-    # Empezamos buscando desde la 5
+
     for c in range(5, max_col + 1):
         cell_val = ws.cell(row=2, column=c).value
+        if cell_val is None:
+            continue
         cell_str = str(cell_val).strip()
-        if cell_str.lower().startswith("notas"):
-            break # Terminamos de leer dias
-        
-        # Debe decir algo como "Lun 06" -> extraer el numero
+        if cell_str.upper().startswith("NOTAS"):
+            break  # Terminamos de leer días
+
         d_match = re.search(r'(\d+)', cell_str)
         if d_match:
             day_columns[c] = int(d_match.group(1))
 
-    total_procesados = 0
+    total_insertados  = 0
     total_actualizados = 0
-    
-    # Procesar filas a partir de la 3
+    total_omitidos    = 0
+
+    # ─── Procesar filas de estudiantes (desde la 3) ───────────────────────────
     for r in range(3, ws.max_row + 1):
-        enrollment_id = ws.cell(row=r, column=1).value
-        # Si no hay ID, terminamos las filas útiles
-        if not enrollment_id:
-            break
-            
+        enrollment_id_raw = ws.cell(row=r, column=1).value
+        if not enrollment_id_raw:
+            break  # Fin de la tabla
+
         try:
-            enrollment_id = int(enrollment_id)
-        except ValueError:
+            enrollment_id = int(enrollment_id_raw)
+        except (ValueError, TypeError):
+            total_omitidos += 1
             continue
-            
+
         for col_index, day in day_columns.items():
             cell = ws.cell(row=r, column=col_index)
-            status_es = cell.value
-            
-            attendance_status = translate_status(status_es)
-            if not attendance_status:
-                continue # Celda vacía o estado no válido
-                
-            # Extraer comentario si existe como nota
-            notes = None
+
+            # Cada celda contiene la HORA DE LLEGADA (o None si estaba ausente)
+            arrival = parse_arrival_time(cell.value)
+
+            # Extraer nota si existe
+            notes: str | None = None
             if cell.comment:
                 notes = cell.comment.text
-                
+
             attendance_date = date(year, month, day)
-            
-            # Buscar si ya existe la asistencia para esa fecha y enrollment
+
+            # Buscar registro existente
             existing = search_by_enrollment_and_date(db, enrollment_id, attendance_date)
-            
-            # TODO: Convertir la "HORA ENTRADA" si es LATE? Por ahora NULL ya que el cliente
-            # registraría manual o el estado lo define.
-            
+
             if existing:
-                if existing.status != attendance_status or existing.notes != notes:
-                    update(db, existing.id, attendance_date=attendance_date, 
-                           status=attendance_status, notes=notes)
+                # Solo actualizar si cambió algo relevante
+                changed = (existing.arrival_time != arrival) or (existing.notes != notes)
+                if changed:
+                    update(db, existing.id,
+                           attendance_date=attendance_date,
+                           arrival_time=arrival,
+                           notes=notes)
                     total_actualizados += 1
+                else:
+                    total_omitidos += 1
             else:
-                create(db, attendance_date=attendance_date, arrival_time=None, 
-                       status=attendance_status, notes=notes, enrollment_id=enrollment_id)
-                total_procesados += 1
-                
+                # Solo crear registro si hay algún dato (hora o nota)
+                if arrival is not None or notes is not None:
+                    create(db,
+                           attendance_date=attendance_date,
+                           arrival_time=arrival,
+                           notes=notes,
+                           enrollment_id=enrollment_id)
+                    total_insertados += 1
+                # Si la celda está vacía (sin hora y sin nota) se omite silenciosamente
+
     return {
         "success": True,
-        "nuevos_registros": total_procesados,
-        "registros_actualizados": total_actualizados,
-        "mes": month,
-        "año": year
+        "inserted": total_insertados,
+        "updated":  total_actualizados,
+        "skipped":  total_omitidos,
+        "received_month": month,
+        "received_year":  year,
+        "logs": []
     }

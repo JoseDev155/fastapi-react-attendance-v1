@@ -1,13 +1,13 @@
+# Librerias
 from typing import Dict, Any
 from datetime import date
 from sqlalchemy.orm import Session
+# Importar directorios del proyecto
 from metrics import get_group_metrics, get_student_metrics
 from models import Group, Student, Enrollment
 
-def generate_monthly_group_report(db: Session, group_id: int, year: int, month: int) -> Dict[str, Any]:
-    """
-    Genera un reporte detallado para un grupo en un mes específico.
-    """
+def generate_monthly_group_report(db: Session, group_id: str, year: int, month: int) -> Dict[str, Any]:
+    # Genera un reporte detallado para un grupo en un mes específico
     from calendar import monthrange
     _, last_day = monthrange(year, month)
     
