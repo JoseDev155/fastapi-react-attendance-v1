@@ -91,7 +91,7 @@ export default function EnrollmentsPage() {
           </p>
         </div>
         {isAdmin && (
-          <Button id="btn-nueva-inscripcion" variant="danger" className="vault-gradient border-0" onClick={openCreate}>
+          <Button id="btn-nueva-inscripcion" variant="danger"  onClick={openCreate}>
             <span className="material-symbols-outlined me-2" style={{ fontSize: '1rem' }}>add</span>
             Nueva Inscripción
           </Button>
@@ -169,7 +169,7 @@ export default function EnrollmentsPage() {
             </Modal.Body>
             <Modal.Footer style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
               <Button variant="outline-secondary" onClick={() => setShowModal(false)}>Cancelar</Button>
-              <Button id="btn-guardar-insc" type="submit" variant="danger" className="vault-gradient border-0" disabled={saving}>
+              <Button id="btn-guardar-insc" type="submit" variant="danger"  disabled={saving}>
                 {saving ? <Spinner size="sm" animation="border" /> : (editing ? 'Guardar Cambios' : 'Inscribir')}
               </Button>
             </Modal.Footer>

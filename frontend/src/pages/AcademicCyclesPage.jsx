@@ -104,7 +104,7 @@ export default function AcademicCyclesPage() {
           </p>
         </div>
         {isAdmin && (
-          <Button id="btn-nuevo-ciclo" variant="danger" className="vault-gradient border-0" onClick={openCreate}>
+          <Button id="btn-nuevo-ciclo" variant="danger"  onClick={openCreate}>
             <span className="material-symbols-outlined me-2" style={{ fontSize: '1rem' }}>add</span>
             Nuevo Ciclo
           </Button>
@@ -173,7 +173,7 @@ export default function AcademicCyclesPage() {
             </Modal.Body>
             <Modal.Footer style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
               <Button variant="outline-secondary" onClick={() => setShowModal(false)}>Cancelar</Button>
-              <Button id="btn-guardar-ciclo" type="submit" variant="danger" className="vault-gradient border-0" disabled={saving}>
+              <Button id="btn-guardar-ciclo" type="submit" variant="danger"  disabled={saving}>
                 {saving ? <Spinner size="sm" animation="border" /> : (editing ? 'Guardar Cambios' : 'Crear Ciclo')}
               </Button>
             </Modal.Footer>

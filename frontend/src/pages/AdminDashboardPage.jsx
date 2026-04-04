@@ -53,7 +53,7 @@ export default function AdminDashboardPage() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Plantilla_Asistencia.xlsx`;
+      a.download = `Plantilla_Asistencia.xlsm`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -92,7 +92,7 @@ export default function AdminDashboardPage() {
               <Button 
                 variant="danger" 
                 size="lg" 
-                className="vault-gradient border-0 px-5 text-uppercase fw-bold"
+                className="px-5 text-uppercase fw-bold"
                 onClick={handleUpload}
                 disabled={!file || loading}
               >

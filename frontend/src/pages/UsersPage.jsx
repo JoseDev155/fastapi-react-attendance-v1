@@ -116,7 +116,7 @@ export default function UsersPage() {
             Administradores y profesores con acceso al sistema.
           </p>
         </div>
-        <Button id="btn-nuevo-usuario" variant="danger" className="vault-gradient border-0" onClick={openCreate}>
+        <Button id="btn-nuevo-usuario" variant="danger"  onClick={openCreate}>
           <span className="material-symbols-outlined me-2" style={{ fontSize: '1rem' }}>person_add</span>
           Nuevo Usuario
         </Button>
@@ -239,7 +239,7 @@ export default function UsersPage() {
           </Modal.Body>
           <Modal.Footer style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
             <Button variant="outline-secondary" onClick={() => setShowModal(false)}>Cancelar</Button>
-            <Button id="btn-guardar-usuario" type="submit" variant="danger" className="vault-gradient border-0" disabled={saving}>
+            <Button id="btn-guardar-usuario" type="submit" variant="danger"  disabled={saving}>
               {saving ? <Spinner size="sm" animation="border" /> : (editing ? 'Guardar Cambios' : 'Crear Usuario')}
             </Button>
           </Modal.Footer>

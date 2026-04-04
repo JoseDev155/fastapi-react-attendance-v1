@@ -86,7 +86,7 @@ export default function ReportsPage() {
                 <label className="form-label" style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--on-surface-dim)' }}>Año</label>
                 <input id="input-rep-anio" type="number" min="2020" max="2099" className="form-control bg-dark text-light border-secondary" value={year} onChange={e => setYear(parseInt(e.target.value))} required />
               </div>
-              <Button id="btn-generar-reporte" type="submit" variant="danger" className="vault-gradient border-0 w-100" disabled={loading}>
+              <Button id="btn-generar-reporte" type="submit" variant="danger" className="w-100" disabled={loading}>
                 {loading ? <><Spinner size="sm" animation="border" className="me-2" />Generando...</> : 'Generar Reporte'}
               </Button>
             </form>

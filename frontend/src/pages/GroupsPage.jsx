@@ -107,7 +107,7 @@ export default function GroupsPage() {
           </p>
         </div>
         {isAdmin && (
-          <Button id="btn-nuevo-grupo" variant="danger" className="vault-gradient border-0" onClick={openCreate}>
+          <Button id="btn-nuevo-grupo" variant="danger"  onClick={openCreate}>
             <span className="material-symbols-outlined me-2" style={{ fontSize: '1rem' }}>add</span>
             Nuevo Grupo
           </Button>
@@ -222,7 +222,7 @@ export default function GroupsPage() {
             </Modal.Body>
             <Modal.Footer style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
               <Button variant="outline-secondary" onClick={() => setShowModal(false)}>Cancelar</Button>
-              <Button id="btn-guardar-grupo" type="submit" variant="danger" className="vault-gradient border-0" disabled={saving}>
+              <Button id="btn-guardar-grupo" type="submit" variant="danger"  disabled={saving}>
                 {saving ? <Spinner size="sm" animation="border" /> : (editing ? 'Guardar Cambios' : 'Crear Grupo')}
               </Button>
             </Modal.Footer>

@@ -119,8 +119,8 @@ export default function LoginPage() {
               </Form.Group>
 
               <div className="d-grid mt-5">
-                <Button variant="danger" size="lg" type="submit" className="vault-gradient text-uppercase fw-bold border-0 p-3" disabled={loading}>
-                  {loading ? 'Autenticando...' : 'Autenticar Entrada'}
+                <Button variant="danger" size="lg" type="submit" className="text-uppercase fw-bold border-0 p-3" disabled={loading}>
+                  {loading ? 'Autenticando...' : 'Autenticar credenciales'}
                 </Button>
               </div>
             </Form>

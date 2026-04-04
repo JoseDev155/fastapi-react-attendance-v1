@@ -45,11 +45,7 @@ h1, h2, h3, h4, h5, h6, .headline {
 /* ─── Color primario ────────────────────────────────────────── */
 .text-primary { color: var(--primary-light) !important; }
 
-/* ─── Gradiente institucional ───────────────────────────────── */
-.vault-gradient {
-  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
-  color: #fff !important;
-}
+
 
 /* ─── Placeholders ──────────────────────────────────────────── */
 .form-control::placeholder {

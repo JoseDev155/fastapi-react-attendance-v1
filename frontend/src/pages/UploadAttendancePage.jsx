@@ -51,7 +51,7 @@ export default function UploadAttendancePage() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Plantilla_Asistencia_${groupId}.xlsx`;
+      a.download = `Plantilla_Asistencia_${groupId}.xlsm`;
       a.click();
       URL.revokeObjectURL(url);
     } catch (e) {
@@ -85,18 +85,18 @@ export default function UploadAttendancePage() {
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="input-archivo-excel" className="form-label" style={{ fontSize: '0.85rem', color: 'var(--on-surface-dim)', fontWeight: 600 }}>
-                  ARCHIVO .XLSX
+                  ARCHIVO .XLSM (Plantilla con Macros)
                 </label>
                 <input
                   id="input-archivo-excel"
                   type="file"
-                  accept=".xlsx,.xls"
+                  accept=".xlsm"
                   className="form-control bg-dark text-light border-secondary"
                   onChange={e => { setFile(e.target.files[0]); setResult(null); setError(null); }}
                   required
                 />
               </div>
-              <Button id="btn-subir-excel" type="submit" variant="danger" className="vault-gradient border-0 w-100" disabled={loading || !file}>
+              <Button id="btn-subir-excel" type="submit" variant="danger" className="w-100" disabled={loading || !file}>
                 {loading
                   ? <><Spinner size="sm" animation="border" className="me-2" />Procesando...</>
                   : <><span className="material-symbols-outlined me-2" style={{ fontSize: '1rem' }}>cloud_upload</span>Subir y Procesar</>
@@ -130,7 +130,7 @@ export default function UploadAttendancePage() {
               Descargar Plantilla
             </h5>
             <p style={{ fontSize: '0.82rem', color: 'var(--on-surface-dim)', marginBottom: '1rem' }}>
-              Descarga la plantilla de asistencia pre-rellenada con los alumnos del grupo. Las celdas de día deben llenarse con la hora de llegada (HH:MM) o dejarse vacías si el alumno no asistió.
+              Descarga la plantilla <strong>.xlsm</strong> con macros pre-instaladas. Escribe <code>1</code> en la celda del alumno para que la macro capture la hora automáticamente.
             </p>
             <div className="d-flex gap-2 flex-wrap">
               {['GRP001','GRP002','GRP003','GRP004','GRP005','GRP006','GRP007'].map(g => (

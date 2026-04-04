@@ -66,7 +66,7 @@ export default function AttendancePage() {
             onChange={e => setGroupInput(e.target.value)}
           />
         </div>
-        <button id="btn-filtrar-grupo" type="submit" className="btn btn-danger vault-gradient border-0 text-nowrap">
+        <button id="btn-filtrar-grupo" type="submit" className="btn btn-danger text-nowrap">
           Filtrar
         </button>
       </form>
