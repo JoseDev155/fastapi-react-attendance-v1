@@ -27,7 +27,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
         ' Verificamos que la celda no esté vacía y sea un 1
         If Not IsEmpty(cell) Then
             If cell.Value = 1 Then
-                cell.Value = Time
+                cell.Value = TimeSerial(Hour(Time), Minute(Time), 0)
                 cell.NumberFormat = "hh:mm:ss"
             End If
         End If

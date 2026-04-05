@@ -7,10 +7,10 @@ import { API_BASE } from '../config';
 
 export default function UploadAttendancePage() {
   const { token } = useAuth();
-  const [file, setFile]         = useState(null);
-  const [loading, setLoading]   = useState(false);
-  const [result, setResult]     = useState(null);
-  const [error, setError]       = useState(null);
+  const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,12 +85,12 @@ export default function UploadAttendancePage() {
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="input-archivo-excel" className="form-label" style={{ fontSize: '0.85rem', color: 'var(--on-surface-dim)', fontWeight: 600 }}>
-                  ARCHIVO .XLSM (Plantilla con Macros)
+                  ARCHIVO .XLSM o .XLSX (Plantilla de Asistencia)
                 </label>
                 <input
                   id="input-archivo-excel"
                   type="file"
-                  accept=".xlsm"
+                  accept=".xlsm,.xlsx"
                   className="form-control bg-dark text-light border-secondary"
                   onChange={e => { setFile(e.target.files[0]); setResult(null); setError(null); }}
                   required
@@ -133,7 +133,7 @@ export default function UploadAttendancePage() {
               Descarga la plantilla <strong>.xlsm</strong> con macros pre-instaladas. Escribe <code>1</code> en la celda del alumno para que la macro capture la hora automáticamente.
             </p>
             <div className="d-flex gap-2 flex-wrap">
-              {['GRP001','GRP002','GRP003','GRP004','GRP005','GRP006','GRP007'].map(g => (
+              {['GRP001', 'GRP002', 'GRP003', 'GRP004', 'GRP005', 'GRP006', 'GRP007'].map(g => (
                 <button
                   key={g}
                   id={`btn-plantilla-${g}`}

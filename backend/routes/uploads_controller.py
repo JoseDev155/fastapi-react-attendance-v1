@@ -9,8 +9,8 @@ uploads_controller = APIRouter()
 
 @uploads_controller.post("/uploads/attendance-excel", tags=["uploads"])
 async def upload_attendance_excel(file: UploadFile = File(...), db: Session = Depends(get_db), current_user: User = Depends(get_current_admin_user)):
-    if not file.filename.endswith('.xlsx'):
-        raise HTTPException(status_code=400, detail="El archivo debe ser un .xlsx")
+    if not (file.filename.endswith('.xlsx') or file.filename.endswith('.xlsm')):
+        raise HTTPException(status_code=400, detail="El archivo debe ser un .xlsx o .xlsm")
         
     try:
         content = await file.read()
