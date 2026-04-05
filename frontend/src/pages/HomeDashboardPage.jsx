@@ -42,7 +42,7 @@ const ADMIN_MODULES = [
   {
     path: '/dashboard/subir-asistencias',
     icon: 'upload_file',
-    title: 'Subir Asistencias (Excel)',
+    title: 'Subir Asistencias (Excel/XLSM)',
     desc: 'Importa listas de asistencia desde la plantilla institucional.',
   },
   {

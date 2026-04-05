@@ -7,16 +7,16 @@ import MainLayout from './layouts/MainLayout';
 import LoginPage from './pages/LoginPage';
 
 // Páginas protegidas
-import HomeDashboardPage    from './pages/HomeDashboardPage';
-import AttendancePage       from './pages/AttendancePage';
+import HomeDashboardPage from './pages/HomeDashboardPage';
+import AttendancePage from './pages/AttendancePage';
 import UploadAttendancePage from './pages/UploadAttendancePage';
-import StudentsPage         from './pages/StudentsPage';
-import GroupsPage           from './pages/GroupsPage';
-import AcademicCyclesPage   from './pages/AcademicCyclesPage';
-import UsersPage            from './pages/UsersPage';
-import EnrollmentsPage      from './pages/EnrollmentsPage';
-import SchedulesPage        from './pages/SchedulesPage';
-import ReportsPage          from './pages/ReportsPage';
+import StudentsPage from './pages/StudentsPage';
+import GroupsPage from './pages/GroupsPage';
+import AcademicCyclesPage from './pages/AcademicCyclesPage';
+import UsersPage from './pages/UsersPage';
+import EnrollmentsPage from './pages/EnrollmentsPage';
+import SchedulesPage from './pages/SchedulesPage';
+import ReportsPage from './pages/ReportsPage';
 
 // Guarda de ruta: redirige al login si no hay token válido.
 // Mientras el contexto resuelve los datos del usuario muestra un spinner.
@@ -53,16 +53,16 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route path="/dashboard"                   element={<HomeDashboardPage />} />
-          <Route path="/dashboard/asistencias"       element={<AttendancePage />} />
+          <Route path="/dashboard" element={<HomeDashboardPage />} />
+          <Route path="/dashboard/asistencias" element={<AttendancePage />} />
           <Route path="/dashboard/subir-asistencias" element={<UploadAttendancePage />} />
-          <Route path="/dashboard/estudiantes"       element={<StudentsPage />} />
-          <Route path="/dashboard/grupos"            element={<GroupsPage />} />
-          <Route path="/dashboard/ciclos"            element={<AcademicCyclesPage />} />
-          <Route path="/dashboard/inscripciones"     element={<EnrollmentsPage />} />
-          <Route path="/dashboard/horarios"          element={<SchedulesPage />} />
-          <Route path="/dashboard/usuarios"          element={<UsersPage />} />
-          <Route path="/dashboard/reportes"          element={<ReportsPage />} />
+          <Route path="/dashboard/estudiantes" element={<StudentsPage />} />
+          <Route path="/dashboard/grupos" element={<GroupsPage />} />
+          <Route path="/dashboard/ciclos" element={<AcademicCyclesPage />} />
+          <Route path="/dashboard/inscripciones" element={<EnrollmentsPage />} />
+          <Route path="/dashboard/horarios" element={<SchedulesPage />} />
+          <Route path="/dashboard/usuarios" element={<UsersPage />} />
+          <Route path="/dashboard/reportes" element={<ReportsPage />} />
         </Route>
 
         {/* Ruta comodín → Login */}

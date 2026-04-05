@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Alert, Spinner } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
@@ -11,6 +11,56 @@ export default function UploadAttendancePage() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+
+  // Estados para grupos dinámicos
+  const [groups, setGroups] = useState([]);
+  const [groupSearch, setGroupSearch] = useState('');
+  const [selectedGroupId, setSelectedGroupId] = useState('');
+  const [loadingGroups, setLoadingGroups] = useState(false);
+
+  // Cargar grupos al montar
+  useEffect(() => {
+    const fetchGroups = async () => {
+      setLoadingGroups(true);
+      try {
+        const res = await fetch(`${API_BASE}/groups`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) throw new Error('Error al cargar grupos');
+        const data = await res.json();
+        setGroups(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoadingGroups(false);
+      }
+    };
+    fetchGroups();
+  }, [token]);
+
+  // Filtrar grupos por búsqueda (usado solo para poblar el dropdown)
+  const filteredGroups = useMemo(() => {
+    const s = groupSearch.toLowerCase().trim();
+    if (!s) return groups;
+    return groups.filter(g => 
+      g.id.toLowerCase().includes(s) || 
+      g.name.toLowerCase().includes(s)
+    );
+  }, [groups, groupSearch]);
+
+  const handleSearchChange = (val) => {
+    setGroupSearch(val);
+    const s = val.toLowerCase().trim();
+    if (s) {
+      // Intentamos encontrar el mejor match (priorizando empezar con el ID)
+      const match = groups.find(g => g.id.toLowerCase().startsWith(s)) ||
+                    groups.find(g => g.id.toLowerCase().includes(s) || g.name.toLowerCase().includes(s));
+      
+      if (match) {
+        setSelectedGroupId(match.id);
+      }
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -129,23 +179,56 @@ export default function UploadAttendancePage() {
               <span className="material-symbols-outlined me-2" style={{ fontSize: '1.2rem', color: 'var(--primary-light)' }}>download</span>
               Descargar Plantilla
             </h5>
-            <p style={{ fontSize: '0.82rem', color: 'var(--on-surface-dim)', marginBottom: '1rem' }}>
-              Descarga la plantilla <strong>.xlsm</strong> con macros pre-instaladas. Escribe <code>1</code> en la celda del alumno para que la macro capture la hora automáticamente.
+            <p style={{ fontSize: '0.82rem', color: 'var(--on-surface-dim)', marginBottom: '1.2rem' }}>
+              Selecciona un grupo para descargar su plantilla <strong>.xlsm</strong>. La macro capturará la hora al escribir <code>1</code>.
             </p>
-            <div className="d-flex gap-2 flex-wrap">
-              {['GRP001', 'GRP002', 'GRP003', 'GRP004', 'GRP005', 'GRP006', 'GRP007'].map(g => (
-                <button
-                  key={g}
-                  id={`btn-plantilla-${g}`}
-                  className="btn btn-sm btn-outline-secondary"
-                  onClick={() => handleDownloadTemplate(g)}
-                >
-                  {g}
-                </button>
-              ))}
+
+            <div className="mb-3">
+              <label className="form-label small fw-bold text-uppercase opacity-75">1. Buscar Grupo</label>
+              <div className="input-group input-group-sm mb-2">
+                <span className="input-group-text bg-dark border-secondary text-secondary">
+                  <span className="material-symbols-outlined" style={{ fontSize: '1.1rem' }}>search</span>
+                </span>
+                <input
+                  type="text"
+                  className="form-control bg-dark text-light border-secondary"
+                  placeholder="ID o nombre del grupo..."
+                  value={groupSearch}
+                  onChange={e => handleSearchChange(e.target.value)}
+                />
+              </div>
+
+              <label className="form-label small fw-bold text-uppercase opacity-75">2. Seleccionar de la lista</label>
+              <select
+                className="form-select form-select-sm bg-dark text-light border-secondary mb-3"
+                value={selectedGroupId}
+                onChange={e => setSelectedGroupId(e.target.value)}
+                disabled={loadingGroups}
+              >
+                <option value="">{loadingGroups ? 'Cargando grupos...' : '-- Selecciona un grupo --'}</option>
+                {filteredGroups.map(g => (
+                  <option key={g.id} value={g.id}>
+                    {g.id} - {g.name}
+                  </option>
+                ))}
+                {!loadingGroups && groupSearch.trim() && filteredGroups.length === 0 && (
+                  <option disabled>No se encontraron resultados</option>
+                )}
+              </select>
+
+              <Button
+                variant="outline-danger"
+                className="w-100 btn-sm d-flex align-items-center justify-content-center"
+                disabled={!selectedGroupId}
+                onClick={() => handleDownloadTemplate(selectedGroupId)}
+              >
+                <span className="material-symbols-outlined me-2" style={{ fontSize: '1.1rem' }}>download</span>
+                Descargar Plantilla (.xlsm)
+              </Button>
             </div>
+
             <p className="mt-2 mb-0" style={{ fontSize: '0.75rem', color: 'var(--on-surface-dim)' }}>
-              Los IDs de grupo disponibles dependen de los registrados en el sistema.
+              Solo se muestran los grupos registrados en el sistema.
             </p>
           </div>
         </div>

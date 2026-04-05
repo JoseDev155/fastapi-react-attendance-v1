@@ -52,7 +52,7 @@ const ALL_MODULES = [
   // ── Solo Administrador ────────────────────────────────────
   {
     path: '/dashboard/subir-asistencias',
-    label: 'Subir Excel',
+    label: 'Subir Asistencias',
     icon: 'upload_file',
     roles: [1],
     section: 'Administración',
